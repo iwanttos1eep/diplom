@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">diplom</string>
+    <string name="app_name">Pizda</string>
+    <string name="app_in_name">Финансы</string>
+    <string name="app_name_after">Управляй своими финансами</string>
+    <string name="reg">ЗАРЕГИСТРИРОВАТЬСЯ</string>
+    <string name="log">ВОЙТИ</string>
+    <string name="email">Email</string>
+    <string name="Password">Пароль</string>
 </resources>
