@@ -14,8 +14,8 @@ import java.io.OutputStream;
 
 class DatabaseHelper extends SQLiteOpenHelper {
     private static String DB_PATH; // полный путь к базе данных
-    private static String DB_NAME = "baza_dannix1.db";
-    private static final int SCHEMA = 1; // версия базы данных
+    private static String DB_NAME = "Data.db";
+    private static final int SCHEMA = 2; // версия базы данных
     static final String TABLE = "USERS"; // название таблицы в бд
     // названия столбцов
     static final String COLUMN_ID = "_id";
@@ -33,9 +33,12 @@ class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) { }
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion,  int newVersion) { }
+    public void onUpgrade(SQLiteDatabase db, int oldVersion,  int newVersion) {
+        db.execSQL("DROP TABLE IF EXISTS "+TABLE);
+        onCreate(db);
+    }
 
-    void create_db(){
+    void create_db() {
 
         File file = new File(DB_PATH);
         if (!file.exists()) {

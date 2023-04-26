@@ -30,8 +30,6 @@ public class MainActivity extends AppCompatActivity {
     Cursor userCursor;
     SimpleCursorAdapter userAdapter;
     Button signin_button;
-    List test;
-    TextInputLayout username_tv, password_tv, checkpass_tv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         // создаем базу данных
         databaseHelper.create_db();
     }
+
 
     public void onResume() {
         super.onResume();

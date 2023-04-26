@@ -4,12 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SimpleCursorAdapter;
+import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -28,9 +30,7 @@ public class registration_Activity extends AppCompatActivity {
         setContentView(R.layout.activity_registration);
         reg_button = findViewById(R.id.registr);
         EditText email_text = findViewById(R.id.Email);
-        String Email_string = String.valueOf(email_text.getText());
         EditText password_text = findViewById(R.id.Password);
-        String Password_string = String.valueOf(password_text.getText());
 
         sqlHelper = new DatabaseHelper(this);
         db = sqlHelper.open();
@@ -38,9 +38,21 @@ public class registration_Activity extends AppCompatActivity {
         reg_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String insert_string = "INSERT INTO USERS (Name, Password) VALUES ('" +Email_string + "','" + Password_string + "')";
-                db.execSQL(insert_string);
-                reg_button.setText("я работаю");
+                String Email_string = String.valueOf(email_text.getText());
+                String Password_string = String.valueOf(password_text.getText());
+                System.out.println(Email_string);
+                System.out.println(Password_string);
+                String insert_string = "INSERT INTO USERS (Name, Password) VALUES ('" + Email_string + "','" + Password_string + "')";
+
+                try {
+                    db.execSQL(insert_string);
+                    System.out.println("Всё сработало");
+                }
+                catch (SQLiteConstraintException e) {
+                    System.out.println("такой мейл уже существует");
+                    Toast toast = Toast.makeText(registration_Activity.this, "Такой email уже существует", Toast.LENGTH_LONG);
+                    toast.show();
+                }
             }
         });
     }
