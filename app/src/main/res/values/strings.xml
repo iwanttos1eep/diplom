@@ -1,9 +1,10 @@
-<resources>
-    <string name="app_name">Pizda</string>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">fuck</string>
     <string name="app_in_name">Финансы</string>
     <string name="app_name_after">Управляй своими финансами</string>
     <string name="reg">ЗАРЕГИСТРИРОВАТЬСЯ</string>
     <string name="log">ВОЙТИ</string>
     <string name="email">Email</string>
     <string name="Password">Пароль</string>
+    <string name="btnreg">РЕГИСТРАЦИЯ</string>
 </resources>

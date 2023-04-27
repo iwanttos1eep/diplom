@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,6 +23,7 @@ public class registration_Activity extends AppCompatActivity {
     Cursor userCursor;
     SimpleCursorAdapter userAdapter;
     Button reg_button;
+    private static final String TAG = "diplom";
 
 
     @Override
@@ -56,5 +58,4 @@ public class registration_Activity extends AppCompatActivity {
             }
         });
     }
-
 }
