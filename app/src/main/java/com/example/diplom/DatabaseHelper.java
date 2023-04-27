@@ -14,8 +14,8 @@ import java.io.OutputStream;
 
 class DatabaseHelper extends SQLiteOpenHelper {
     private static String DB_PATH; // полный путь к базе данных
-    private static String DB_NAME = "Data.db";
-    private static final int SCHEMA = 2; // версия базы данных
+    private static String DB_NAME = "Data1.db";
+    private static final int DB_VERSION = 3; // версия базы данных
     static final String TABLE = "USERS"; // название таблицы в бд
     // названия столбцов
     static final String COLUMN_ID = "_id";
@@ -25,7 +25,7 @@ class DatabaseHelper extends SQLiteOpenHelper {
     private Context myContext;
 
     DatabaseHelper(Context context) {
-        super(context, DB_NAME, null, SCHEMA);
+        super(context, DB_NAME, null, DB_VERSION);
         this.myContext=context;
         DB_PATH =context.getFilesDir().getPath() + DB_NAME;
     }
@@ -34,11 +34,11 @@ class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) { }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion,  int newVersion) {
-        Log.w(DatabaseHelper.class.getName(), "Upgrading database from version "
-                + oldVersion + " to " + newVersion
-                + ", which will destroy all old data");
-        db.execSQL("DROP TABLE IF EXISTS "+TABLE);
-        onCreate(db);
+        System.out.println("Я блять работаю я база данных обновлятор");
+        if (newVersion > oldVersion) {
+            String q = "ALTER TABLE USERS ADD sos INTEGER";
+            db.execSQL(q);
+        }
     }
 
     void create_db() {

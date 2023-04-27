@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class registration_Activity extends AppCompatActivity {
@@ -23,7 +24,6 @@ public class registration_Activity extends AppCompatActivity {
     Cursor userCursor;
     SimpleCursorAdapter userAdapter;
     Button reg_button;
-    private static final String TAG = "diplom";
 
 
     @Override
@@ -31,8 +31,8 @@ public class registration_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
         reg_button = findViewById(R.id.registr);
-        EditText email_text = findViewById(R.id.Email);
-        EditText password_text = findViewById(R.id.Password);
+        TextInputEditText email_text = findViewById(R.id.Email);
+        TextInputEditText password_text = findViewById(R.id.Password);
 
         sqlHelper = new DatabaseHelper(this);
         db = sqlHelper.open();
@@ -48,10 +48,10 @@ public class registration_Activity extends AppCompatActivity {
 
                 try {
                     db.execSQL(insert_string);
-                    System.out.println("Всё сработало");
+                    //System.out.println("Всё сработало");
                 }
                 catch (SQLiteConstraintException e) {
-                    System.out.println("такой мейл уже существует");
+                    //System.out.println("такой мейл уже существует");
                     Toast toast = Toast.makeText(registration_Activity.this, "Такой email уже существует", Toast.LENGTH_LONG);
                     toast.show();
                 }
