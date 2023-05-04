@@ -7,15 +7,12 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 
 public class registration_Activity extends AppCompatActivity {
 
@@ -24,6 +21,7 @@ public class registration_Activity extends AppCompatActivity {
     Cursor userCursor;
     SimpleCursorAdapter userAdapter;
     Button reg_button;
+    String UserId;
 
 
     @Override
@@ -49,6 +47,13 @@ public class registration_Activity extends AppCompatActivity {
                 try {
                     db.execSQL(insert_string);
                     //System.out.println("Всё сработало");
+                    String this_string = "SELECT _id FROM USERS WHERE Name='" + Email_string + "' AND Password = '" + Password_string + "'";
+                    Cursor c2 = db.rawQuery(this_string, null);
+                    while (c2.moveToNext()) {
+                        UserId = c2.getString(c2.getColumnIndexOrThrow("_id"));
+                    }
+                    registr(v, UserId);
+
                 }
                 catch (SQLiteConstraintException e) {
                     //System.out.println("такой мейл уже существует");
@@ -57,5 +62,10 @@ public class registration_Activity extends AppCompatActivity {
                 }
             }
         });
+    }
+    public void registr (View v, String UserId) {
+        Intent intent = new Intent(this, methodsActivity.class);
+        intent.putExtra("user", UserId);
+        startActivity(intent);
     }
 }

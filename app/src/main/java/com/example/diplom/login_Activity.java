@@ -19,12 +19,15 @@ import android.widget.SimpleCursorAdapter;
 
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.io.Serializable;
+
 public class login_Activity extends AppCompatActivity {
     DatabaseHelper sqlHelper;
     SQLiteDatabase db;
     Cursor userCursor;
     SimpleCursorAdapter userAdapter;
     Button log_button;
+    String UserID;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,24 +39,32 @@ public class login_Activity extends AppCompatActivity {
         sqlHelper = new DatabaseHelper(this);
         db = sqlHelper.open();
 
-    log_button.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            String username_text = login.getText().toString();
-            String password_text = String.valueOf(password_login.getText());
-            String check_string = "SELECT * FROM USERS WHERE Name='" + username_text + "' AND Password = '"+ password_text +"'";
-            Cursor c = db.rawQuery(check_string, null);
-            //System.out.println(c.getCount());
-            if (c.getCount()==0){
-                System.out.println("Такого пользователя не существует!");
-                Toast toast = Toast.makeText(login_Activity.this, "Такого пользователя не существует", Toast.LENGTH_LONG);
-                toast.show();
+        log_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String username_text = login.getText().toString();
+                String password_text = String.valueOf(password_login.getText());
+                String check_string = "SELECT * FROM USERS WHERE Name='" + username_text + "' AND Password = '" + password_text + "'";
+                Cursor c = db.rawQuery(check_string, null);
+                if (c.getCount() == 0) {
+                    //System.out.println("Такого пользователя не существует!");
+                    Toast toast = Toast.makeText(login_Activity.this, "Такого пользователя не существует", Toast.LENGTH_LONG);
+                    toast.show();
+                }
+                else {
+                    String this_string = "SELECT _id FROM USERS WHERE Name='" + username_text + "' AND Password = '" + password_text + "'";
+                    Cursor c2 = db.rawQuery(this_string, null);
+                    while (c2.moveToNext()) {
+                        UserID = c2.getString(c2.getColumnIndexOrThrow("_id"));
+                    }
+                    logbtn(v, UserID);
+                }
             }
-            else {
-                //Intent intent = new Intent(this, registration_Activity.class);
-                //startActivity(intent);
-            }
-        }
-    });
-}
+        });
+    }
+    public void logbtn(View v, String UserID) {
+        Intent intent = new Intent(this, methodsActivity.class);
+        intent.putExtra("user", UserID);
+        startActivity(intent);
+    }
 }

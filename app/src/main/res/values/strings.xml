@@ -8,4 +8,5 @@
     <string name="Password">Пароль</string>
     <string name="btnreg">РЕГИСТРАЦИЯ</string>
     <string name="btnlog">ВХОД</string>
+    <string name="choicetext">Выбор метода</string>
 </resources>

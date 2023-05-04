@@ -19,75 +19,87 @@
         android:textColor="@color/black"
         android:textSize="30sp" />
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="197dp"
-        android:layout_marginTop="100dp"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat_bold"
-            android:hint="Email:"
-            android:inputType="text"
-            android:text=""
-            android:textColor="#cc7722"
-            android:textColorHint="@color/black"
-            android:textSize="10sp">
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="center"
+            android:layout_marginStart="27dp"
+            android:layout_marginTop="200dp"
+            android:layout_marginEnd="27dp"
+            android:orientation="vertical">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/Email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/montserrat_bold"
-                android:hint=""
-                android:importantForAutofill="no"
-                android:inputType="textEmailAddress"
-                android:text=""
-                android:textColor="@color/black"
-                android:textColorHint="@color/black"
-                android:textSize="20sp" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat_bold"
-            android:hint="Пароль:"
-            android:inputType="textPassword"
-            android:text=""
-            android:textColor="#cc7722"
-            android:textColorHint="@color/black"
-            android:textSize="10sp"
-            app:endIconMode="password_toggle">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/Password"
+            <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_bold"
-                android:hint=""
+                android:hint="Email:"
+                android:inputType="text"
+                android:text=""
+                android:textColor="#cc7722"
+                android:textColorHint="@color/black"
+                android:textSize="10sp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/Email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:hint=""
+                    android:importantForAutofill="no"
+                    android:inputType="textEmailAddress"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black"
+                    android:textSize="20sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_bold"
+                android:hint="Пароль:"
                 android:inputType="textPassword"
                 android:text=""
-                android:textColor="@color/black"
+                android:textColor="#cc7722"
                 android:textColorHint="@color/black"
-                android:textSize="20sp" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:textSize="10sp"
+                app:endIconMode="password_toggle">
 
-        <Button
-            android:id="@+id/registr"
-            android:layout_width="match_parent"
-            android:layout_height="59dp"
-            android:layout_marginVertical="0dp"
-            android:backgroundTint="#cc7722"
-            android:fontFamily="@font/montserrat_bold"
-            android:onClick="registration"
-            android:text="Зарегистрироваться"
-            android:textColor="@color/white" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/Password"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:hint=""
+                    android:inputType="textPassword"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black"
+                    android:textSize="20sp" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-    </LinearLayout>
+            <Button
+                android:id="@+id/registr"
+                android:layout_width="match_parent"
+                android:layout_height="59dp"
+                android:layout_marginVertical="0dp"
+                android:backgroundTint="#cc7722"
+                android:fontFamily="@font/montserrat_bold"
+                android:onClick="registration"
+                android:text="Зарегистрироваться"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
 </androidx.cardview.widget.CardView>
