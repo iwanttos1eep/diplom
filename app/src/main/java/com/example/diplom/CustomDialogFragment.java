@@ -9,10 +9,11 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
-public class CustomDialogFragment extends AppCompatActivity  {
+public class CustomDialogFragment extends DialogFragment  {
     DatabaseHelper sqlHelper;
     SQLiteDatabase db;
     static String description;
@@ -21,7 +22,7 @@ public class CustomDialogFragment extends AppCompatActivity  {
     static final int DIALOG_THIRD_ID = 3;
 
 
-    public void Purpose_Description() {
+    /*public void Purpose_Description() {
          sqlHelper = new DatabaseHelper(this);
          db = sqlHelper.open();
 
@@ -29,10 +30,11 @@ public class CustomDialogFragment extends AppCompatActivity  {
         while (cursor_description1.moveToNext()) {
             description = cursor_description1.getString(cursor_description1.getColumnIndexOrThrow("Description"));
         }
-    }
+    }*/
 
 
 
+    @Nullable
     public static AlertDialog getDialog(Activity activity, int id) {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
 

@@ -28,6 +28,7 @@ public class login_Activity extends AppCompatActivity {
     SimpleCursorAdapter userAdapter;
     Button log_button;
     String UserID;
+    String Purpose;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,13 +58,38 @@ public class login_Activity extends AppCompatActivity {
                     while (c2.moveToNext()) {
                         UserID = c2.getString(c2.getColumnIndexOrThrow("_id"));
                     }
-                    logbtn(v, UserID);
+                    String check_akk_string = "SELECT Purpose FROM USERS WHERE _id = '" + UserID + "'";
+                    Cursor c3 = db.rawQuery(check_akk_string, null);
+                    String check_purp = null;
+                    while (c3.moveToNext())  {
+                        Purpose = c3.getString(c3.getColumnIndexOrThrow("Purpose"));
+                        check_purp = Purpose;
+                    }
+                    try {
+                        if (check_purp.equals("1")) {
+                            choice(v, UserID);
+                        } else if (check_purp.equals("2")) {
+                            Toast toast = Toast.makeText(login_Activity.this, "Кабинет пользователя в процессе разработки!", Toast.LENGTH_LONG);
+                            toast.show();
+                        } else if (check_purp.equals("3")) {
+                            Toast toast = Toast.makeText(login_Activity.this, "Кабинет пользователя в процессе разработки!", Toast.LENGTH_LONG);
+                            toast.show();
+                        }
+                    }
+                    catch (NullPointerException e) {
+                        logbtn(v, UserID);
+                    }
                 }
             }
         });
     }
     public void logbtn(View v, String UserID) {
         Intent intent = new Intent(this, methodsActivity.class);
+        intent.putExtra("user", UserID);
+        startActivity(intent);
+    }
+    public void choice(View v, String UserID) {
+        Intent intent = new Intent(this, fifty_twenty_thirty_method.class);
         intent.putExtra("user", UserID);
         startActivity(intent);
     }

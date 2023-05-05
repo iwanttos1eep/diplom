@@ -12,10 +12,16 @@
         android:theme="@style/Theme.Diplom"
         tools:targetApi="31">
         <activity
-            android:name=".methodsActivity"
+            android:name=".six_jugs_method"
             android:exported="false" />
         <activity
-            android:name=".shablon"
+            android:name=".four_converts_method"
+            android:exported="false" />
+        <activity
+            android:name=".fifty_twenty_thirty_method"
+            android:exported="false" />
+        <activity
+            android:name=".methodsActivity"
             android:exported="false" />
         <activity
             android:name=".registration_Activity"

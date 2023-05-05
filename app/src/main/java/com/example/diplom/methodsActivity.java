@@ -2,6 +2,8 @@ package com.example.diplom;
 
 
 import android.app.AlertDialog;
+import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -23,6 +25,7 @@ public class methodsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         Bundle arguments = getIntent().getExtras();
         String UserID = (String) arguments.get("user");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_methods);
         choice_btn = findViewById(R.id.choice);
@@ -60,13 +63,32 @@ public class methodsActivity extends AppCompatActivity {
             }
         });
 
-                /*choice_btn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
+        choice_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String this_string = "SELECT Purpose FROM USERS WHERE _id = '" + UserID + "'";
+                Cursor c = db.rawQuery(this_string, null);
+                String purpID = null;
+                while (c.moveToNext()) {
+                    purpID = c.getString(c.getColumnIndexOrThrow("Purpose"));
+                    //System.out.println(purpID);
+                }
+                try {
+                    if (purpID.equals("1")) {
+                        choice(v);
+                    } else if (purpID.equals("2")) {
+                        choice2(v);
+                    } else if (purpID.equals("3")) {
+                        choice3(v);
                     }
-                }*/
+                }
+                catch (NullPointerException e) {
+                    Toast toast = Toast.makeText(methodsActivity.this, "Вы не выбрали метод", Toast.LENGTH_LONG);
+                    toast.show();
+                }
             }
+        });
+    }
 
 
 
@@ -82,6 +104,19 @@ public class methodsActivity extends AppCompatActivity {
     public void showDialog3(View v) {
         AlertDialog dialog = CustomDialogFragment.getDialog(this, CustomDialogFragment.DIALOG_THIRD_ID);
         dialog.show();
+    }
+
+    public void choice(View v) {
+        Intent intent = new Intent(this, fifty_twenty_thirty_method.class);
+        startActivity(intent);
+    }
+    public void choice2(View v) {
+        Intent intent = new Intent(this, four_converts_method.class);
+        startActivity(intent);
+    }
+    public void choice3(View v) {
+        Intent intent = new Intent(this, six_jugs_method.class);
+        startActivity(intent);
     }
 
     /*private void choice_methods (RadioButton radbtn) {
