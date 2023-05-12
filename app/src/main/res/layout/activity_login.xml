@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    app:cardBackgroundColor="@color/backgroundcolor">
+    app:cardBackgroundColor="#f5f1da">
 
 
     <TextView
@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginTop="50dp"
-        android:fontFamily="@font/montserrat_bold"
+        android:fontFamily="@font/comfortaa_bold"
         android:gravity="center"
         android:hint="@string/btnlog"
         android:textColor="@color/black"
@@ -39,10 +39,10 @@
 
 
             <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                style="@style/LoginTextInputLayoutStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/montserrat_bold"
+                android:fontFamily="@font/comfortaa_bold"
                 android:hint="Email:"
                 android:inputType="text"
                 android:text=""
@@ -54,21 +54,22 @@
                     android:id="@+id/emailLogin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat_bold"
+                    android:fontFamily="@font/comfortaa_medium"
                     android:hint=""
                     android:importantForAutofill="no"
                     android:inputType="textEmailAddress"
                     android:text=""
                     android:textColor="@color/black"
                     android:textColorHint="@color/black"
+                    style="@style/LoginTextInputLayoutStyle"
                     android:textSize="20sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                style="@style/LoginTextInputLayoutStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/montserrat_bold"
+                android:fontFamily="@font/comfortaa_medium"
                 android:hint="Пароль:"
                 android:inputType="textPassword"
                 android:text=""
@@ -79,10 +80,10 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/passwordLogin"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    style="@style/LoginTextInputLayoutStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat_bold"
+                    android:fontFamily="@font/comfortaa_medium"
                     android:hint=""
                     android:inputType="textPassword"
                     android:text=""
@@ -94,10 +95,10 @@
             <Button
                 android:id="@+id/logbtn"
                 android:layout_width="match_parent"
-                android:layout_height="59dp"
+                android:layout_height="60dp"
                 android:layout_marginVertical="0dp"
-                android:backgroundTint="#cc7722"
-                android:fontFamily="@font/montserrat_bold"
+                android:backgroundTint="@color/buttonscolor"
+                android:fontFamily="@font/comfortaa_bold"
                 android:onClick="login"
                 android:text="Войти"
                 android:textColor="@color/white" />

@@ -44,7 +44,6 @@ public class methodsActivity extends AppCompatActivity {
                                 Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.firstmethod:
-
                         String insert_string = "UPDATE USERS SET Purpose = 1 WHERE _id = '" + UserID + "'";
                         db.execSQL(insert_string);
                         break;
@@ -74,12 +73,16 @@ public class methodsActivity extends AppCompatActivity {
                     //System.out.println(purpID);
                 }
                 try {
-                    if (purpID.equals("1")) {
-                        choice(v);
-                    } else if (purpID.equals("2")) {
-                        choice2(v);
-                    } else if (purpID.equals("3")) {
-                        choice3(v);
+                    switch (purpID) {
+                        case "1":
+                            choice(v, UserID);
+                            break;
+                        case "2":
+                            choice2(v, UserID);
+                            break;
+                        case "3":
+                            choice3(v, UserID);
+                            break;
                     }
                 }
                 catch (NullPointerException e) {
@@ -106,16 +109,19 @@ public class methodsActivity extends AppCompatActivity {
         dialog.show();
     }
 
-    public void choice(View v) {
+    public void choice(View v, String UserID) {
         Intent intent = new Intent(this, fifty_twenty_thirty_method.class);
+        intent.putExtra("user", UserID);
         startActivity(intent);
     }
-    public void choice2(View v) {
+    public void choice2(View v, String UserID) {
         Intent intent = new Intent(this, four_converts_method.class);
+        intent.putExtra("user", UserID);
         startActivity(intent);
     }
-    public void choice3(View v) {
+    public void choice3(View v, String UserID) {
         Intent intent = new Intent(this, six_jugs_method.class);
+        intent.putExtra("user", UserID);
         startActivity(intent);
     }
 

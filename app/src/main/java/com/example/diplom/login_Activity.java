@@ -66,14 +66,18 @@ public class login_Activity extends AppCompatActivity {
                         check_purp = Purpose;
                     }
                     try {
-                        if (check_purp.equals("1")) {
-                            choice(v, UserID);
-                        } else if (check_purp.equals("2")) {
-                            Toast toast = Toast.makeText(login_Activity.this, "Кабинет пользователя в процессе разработки!", Toast.LENGTH_LONG);
-                            toast.show();
-                        } else if (check_purp.equals("3")) {
-                            Toast toast = Toast.makeText(login_Activity.this, "Кабинет пользователя в процессе разработки!", Toast.LENGTH_LONG);
-                            toast.show();
+                        switch (check_purp) {
+                            case "1":
+                                choice(v, UserID);
+                                break;
+                            case "2": {
+                                choice2(v, UserID);
+                                break;
+                            }
+                            case "3": {
+                                choice3(v, UserID);
+                                break;
+                            }
                         }
                     }
                     catch (NullPointerException e) {
@@ -90,6 +94,16 @@ public class login_Activity extends AppCompatActivity {
     }
     public void choice(View v, String UserID) {
         Intent intent = new Intent(this, fifty_twenty_thirty_method.class);
+        intent.putExtra("user", UserID);
+        startActivity(intent);
+    }
+    public void choice2(View v, String UserID) {
+        Intent intent = new Intent(this, four_converts_method.class);
+        intent.putExtra("user", UserID);
+        startActivity(intent);
+    }
+    public void choice3(View v, String UserID) {
+        Intent intent = new Intent(this, six_jugs_method.class);
         intent.putExtra("user", UserID);
         startActivity(intent);
     }

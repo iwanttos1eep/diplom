@@ -21,20 +21,21 @@ public class CustomDialogFragment extends DialogFragment  {
     static final int DIALOG_SECOND_ID = 2;
     static final int DIALOG_THIRD_ID = 3;
 
+    static final int AdviceID = 4;
 
-    /*public void Purpose_Description() {
-         sqlHelper = new DatabaseHelper(this);
+
+
+
+    public void Purpose_Description() {
+         sqlHelper = new DatabaseHelper(getActivity());
          db = sqlHelper.open();
 
          Cursor cursor_description1 = db.rawQuery("SELECT Description FROM Purpose WHERE _idPurpose ='"+ "'", null);
         while (cursor_description1.moveToNext()) {
             description = cursor_description1.getString(cursor_description1.getColumnIndexOrThrow("Description"));
         }
-    }*/
+    }
 
-
-
-    @Nullable
     public static AlertDialog getDialog(Activity activity, int id) {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
 

@@ -13,13 +13,13 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_alignParentStart="true"
-            android:layout_alignParentTop="false"
             android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
             android:layout_gravity="center"
             android:layout_marginStart="27dp"
-            android:layout_marginTop="1dp"
+            android:layout_marginTop="0dp"
             android:layout_marginEnd="27dp"
             android:orientation="vertical">
 
@@ -28,8 +28,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="250dp"
-                android:fontFamily="@font/montserrat_bold"
+                android:layout_marginTop="300dp"
+                android:elevation="20dp"
+                android:fontFamily="@font/comfortaa_bold"
                 android:gravity="center"
                 android:text="@string/choicetext"
                 android:textColor="@color/black"
@@ -47,28 +48,28 @@
                     android:id="@+id/firstmethod"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat_medium"
+                    android:fontFamily="@font/comfortaa_medium"
+                    android:onClick="showDialog"
                     android:text="50-20-30"
-                    android:textSize="30sp"
-                    android:onClick="showDialog"/>
+                    android:textSize="30sp" />
 
                 <RadioButton
                     android:id="@+id/secondmethod"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat_medium"
+                    android:fontFamily="@font/comfortaa_medium"
+                    android:onClick="showDialog2"
                     android:text="4 конверта"
-                    android:textSize="30sp"
-                    android:onClick="showDialog2"/>
+                    android:textSize="30sp" />
 
                 <RadioButton
                     android:id="@+id/thirdmethod"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat_medium"
+                    android:fontFamily="@font/comfortaa_medium"
+                    android:onClick="showDialog3"
                     android:text="6 кувшинов"
-                    android:textSize="30sp"
-                    android:onClick="showDialog3"/>
+                    android:textSize="30sp" />
 
                 <Button
                     android:id="@+id/choice"
@@ -76,7 +77,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
                     android:layout_marginEnd="30dp"
-                    android:fontFamily="@font/montserrat_medium"
+                    android:backgroundTint="@color/buttonscolor"
+                    android:fontFamily="@font/comfortaa_medium"
                     android:text="выбрать" />
 
             </RadioGroup>
