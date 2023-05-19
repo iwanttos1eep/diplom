@@ -143,7 +143,7 @@
         android:backgroundTint="@color/buttonscolor"
         android:backgroundTintMode="src_in"
         android:fontFamily="@font/comfortaa_bold"
-        android:text="45000"
+        android:text="0"
         android:textSize="18sp" />
 
     <TextView

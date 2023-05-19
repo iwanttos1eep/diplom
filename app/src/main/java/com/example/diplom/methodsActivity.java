@@ -20,11 +20,12 @@ public class methodsActivity extends AppCompatActivity {
     DatabaseHelper sqlHelper;
     SQLiteDatabase db;
     Button choice_btn;
+    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Bundle arguments = getIntent().getExtras();
-        String UserID = (String) arguments.get("user");
+        User user = (User) arguments.get("user");
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_methods);
@@ -44,15 +45,15 @@ public class methodsActivity extends AppCompatActivity {
                                 Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.firstmethod:
-                        String insert_string = "UPDATE USERS SET Purpose = 1 WHERE _id = '" + UserID + "'";
+                        String insert_string = "UPDATE USERS SET Purpose = 1 WHERE _id = '" + user.UserID + "'";
                         db.execSQL(insert_string);
                         break;
                     case R.id.secondmethod:
-                        String insert_string2 = "UPDATE USERS SET Purpose = 2 WHERE _id = '" + UserID + "'";
+                        String insert_string2 = "UPDATE USERS SET Purpose = 2 WHERE _id = '" + user.UserID + "'";
                         db.execSQL(insert_string2);
                         break;
                     case R.id.thirdmethod:
-                        String insert_string3 = "UPDATE USERS SET Purpose = 3 WHERE _id = '" + UserID + "'";
+                        String insert_string3 = "UPDATE USERS SET Purpose = 3 WHERE _id = '" + user.UserID + "'";
                         db.execSQL(insert_string3);
                         break;
 
@@ -65,7 +66,7 @@ public class methodsActivity extends AppCompatActivity {
         choice_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String this_string = "SELECT Purpose FROM USERS WHERE _id = '" + UserID + "'";
+                String this_string = "SELECT Purpose FROM USERS WHERE _id = '" + user.UserID + "'";
                 Cursor c = db.rawQuery(this_string, null);
                 String purpID = null;
                 while (c.moveToNext()) {
@@ -75,13 +76,13 @@ public class methodsActivity extends AppCompatActivity {
                 try {
                     switch (purpID) {
                         case "1":
-                            choice(v, UserID);
+                            choice(v, user);
                             break;
                         case "2":
-                            choice2(v, UserID);
+                            choice2(v, user);
                             break;
                         case "3":
-                            choice3(v, UserID);
+                            choice3(v, user);
                             break;
                     }
                 }
@@ -109,19 +110,19 @@ public class methodsActivity extends AppCompatActivity {
         dialog.show();
     }
 
-    public void choice(View v, String UserID) {
+    public void choice(View v, User user) {
         Intent intent = new Intent(this, fifty_twenty_thirty_method.class);
-        intent.putExtra("user", UserID);
+        intent.putExtra("user", user);
         startActivity(intent);
     }
-    public void choice2(View v, String UserID) {
+    public void choice2(View v, User user) {
         Intent intent = new Intent(this, four_converts_method.class);
-        intent.putExtra("user", UserID);
+        intent.putExtra("user", user);
         startActivity(intent);
     }
-    public void choice3(View v, String UserID) {
+    public void choice3(View v, User user) {
         Intent intent = new Intent(this, six_jugs_method.class);
-        intent.putExtra("user", UserID);
+        intent.putExtra("user", user);
         startActivity(intent);
     }
 

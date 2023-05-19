@@ -21,8 +21,6 @@ public class CustomDialogFragment extends DialogFragment  {
     static final int DIALOG_SECOND_ID = 2;
     static final int DIALOG_THIRD_ID = 3;
 
-    static final int AdviceID = 4;
-
 
 
 

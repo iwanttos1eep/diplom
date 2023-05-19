@@ -18,10 +18,8 @@ public class registration_Activity extends AppCompatActivity {
 
     DatabaseHelper sqlHelper;
     SQLiteDatabase db;
-    Cursor userCursor;
-    SimpleCursorAdapter userAdapter;
     Button reg_button;
-    String UserId;
+    String UserID;
 
 
     @Override
@@ -50,9 +48,9 @@ public class registration_Activity extends AppCompatActivity {
                     String this_string = "SELECT _id FROM USERS WHERE Name='" + Email_string + "' AND Password = '" + Password_string + "'";
                     Cursor c2 = db.rawQuery(this_string, null);
                     while (c2.moveToNext()) {
-                        UserId = c2.getString(c2.getColumnIndexOrThrow("_id"));
+                        UserID = c2.getString(c2.getColumnIndexOrThrow("_id"));
                     }
-                    registr(v, UserId);
+                    registr(v, UserID);
 
                 }
                 catch (SQLiteConstraintException e) {
@@ -63,9 +61,11 @@ public class registration_Activity extends AppCompatActivity {
             }
         });
     }
-    public void registr (View v, String UserId) {
+    public void registr (View v, String UserID) {
+        User user = new User();
+        user.UserID = Integer.valueOf(UserID);
         Intent intent = new Intent(this, methodsActivity.class);
-        intent.putExtra("user", UserId);
+        intent.putExtra("user", user);
         startActivity(intent);
     }
 }

@@ -4,22 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
-import android.os.Bundle;
-import android.widget.SimpleCursorAdapter;
-
 import com.google.android.material.textfield.TextInputEditText;
-
-import java.io.Serializable;
 
 public class login_Activity extends AppCompatActivity {
     DatabaseHelper sqlHelper;
@@ -29,6 +21,7 @@ public class login_Activity extends AppCompatActivity {
     Button log_button;
     String UserID;
     String Purpose;
+    User user;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +45,7 @@ public class login_Activity extends AppCompatActivity {
                     Toast toast = Toast.makeText(login_Activity.this, "Такого пользователя не существует", Toast.LENGTH_LONG);
                     toast.show();
                 }
+
                 else {
                     String this_string = "SELECT _id FROM USERS WHERE Name='" + username_text + "' AND Password = '" + password_text + "'";
                     Cursor c2 = db.rawQuery(this_string, null);
@@ -68,7 +62,7 @@ public class login_Activity extends AppCompatActivity {
                     try {
                         switch (check_purp) {
                             case "1":
-                                choice(v, UserID);
+                                choice(v, FindUser(UserID));
                                 break;
                             case "2": {
                                 choice2(v, UserID);
@@ -87,24 +81,40 @@ public class login_Activity extends AppCompatActivity {
             }
         });
     }
-    public void logbtn(View v, String UserID) {
+
+    public User FindUser(String UserID) {
+        User user = new User();
+        user.UserID = Integer.valueOf(UserID);
+        user.db = db;
+        user.setSalary();
+        return (user);
+    }
+
+    public void logbtn(View v, String  UserID) {
+        User user = new User();
+        user.UserID = Integer.valueOf(UserID);
         Intent intent = new Intent(this, methodsActivity.class);
-        intent.putExtra("user", UserID);
+        intent.putExtra("user", user);
         startActivity(intent);
     }
-    public void choice(View v, String UserID) {
+    public void choice(View v, User user) {
+        System.out.println(UserID + "это юзер айди из логин активити");
         Intent intent = new Intent(this, fifty_twenty_thirty_method.class);
-        intent.putExtra("user", UserID);
+        intent.putExtra("user", user);
         startActivity(intent);
     }
-    public void choice2(View v, String UserID) {
+    public void choice2(View v, String  UserID) {
+        User user = new User();
+        user.UserID = Integer.valueOf(UserID);
         Intent intent = new Intent(this, four_converts_method.class);
-        intent.putExtra("user", UserID);
+        intent.putExtra("user", user);
         startActivity(intent);
     }
     public void choice3(View v, String UserID) {
+        User user = new User();
+        user.UserID = Integer.valueOf(UserID);
         Intent intent = new Intent(this, six_jugs_method.class);
-        intent.putExtra("user", UserID);
+        intent.putExtra("user", user);
         startActivity(intent);
     }
 }

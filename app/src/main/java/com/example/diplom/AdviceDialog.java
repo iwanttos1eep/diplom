@@ -13,7 +13,6 @@ import androidx.fragment.app.DialogFragment;
 import java.io.Serializable;
 
 public class AdviceDialog extends DialogFragment {
-     SQLiteDatabase db;
     TextView textAdvice;
 
     public AdviceDialog() {
@@ -33,14 +32,13 @@ public class AdviceDialog extends DialogFragment {
         return inflater.inflate(R.layout.dialog_advice, container);
     }
 
-
     @Override
     public void onViewCreated(View v, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(v, savedInstanceState);
         Bundle arguments = getArguments();
         User user = (User) arguments.get("user");
+        System.out.println(user.UserID + " Это айди юзера из эдвайс диалога");
         textAdvice = v.findViewById(R.id.textadvice);
         textAdvice.setText(user.getAdvice());
-
     }
 }
