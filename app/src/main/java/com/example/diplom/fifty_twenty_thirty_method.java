@@ -14,6 +14,9 @@ import android.widget.EditText;
 public class fifty_twenty_thirty_method extends AppCompatActivity implements MyDialogFragmentListener  {
     Button advicebtn;
     Button salarybtn;
+    Button fiftybtn;
+    Button twentybtn;
+    Button thirtybtn;
     DatabaseHelper sqlHelper;
     SQLiteDatabase db;
     User user;
@@ -28,22 +31,29 @@ public class fifty_twenty_thirty_method extends AppCompatActivity implements MyD
         setContentView(R.layout.activity_fifty_twenty_thirty_method);
         advicebtn = findViewById(R.id.buttnadvice);
         salarybtn = findViewById(R.id.dohodbtn);
+        fiftybtn = findViewById(R.id.fifty_percent);
+        twentybtn = findViewById(R.id.twenty_percent);
+        thirtybtn = findViewById(R.id.thirty_percent);
 
-        if (user.getSalary() == null) {
-            salarybtn.setText("0");
-        }
-        else {
-            salarybtn.setText(String.valueOf(user.getSalary()));
-        }
         sqlHelper = new DatabaseHelper(this);
         db = sqlHelper.open();
 
-        //если в таблице нет _id, то вставить новый
+            //если в таблице нет _id, то вставить новый
             if (user.UserID == null) {
                 String insert_id = "INSERT INTO fifty_twenty_thirty (_id) VALUES ('" + user.UserID + "')";
                 db.execSQL(insert_id);
             }
 
+        if (user.getSalary() == null) {
+            salarybtn.setText("0");
+        }
+
+        else {
+            salarybtn.setText(String.valueOf(user.getSalary()));
+            fiftybtn.setText(String.valueOf(user.getFifty()));
+            twentybtn.setText(String.valueOf(user.getTwenty()));
+            //thirtybtn.setText(String.valueOf(user.getThirty()));
+        }
 
         advicebtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,8 +70,17 @@ public class fifty_twenty_thirty_method extends AppCompatActivity implements MyD
         });
     }
 
-    public void onReturnValue(Integer Salary) {
+    public void onReturnSalary(Integer Salary) {
         salarybtn.setText(String.valueOf(Salary));
+    }
+    public void onReturnFifty(Integer Fifty) {
+        fiftybtn.setText(String.valueOf(Fifty));
+    }
+    public void onReturnTwenty(Integer Twenty) {
+        twentybtn.setText(String.valueOf(Twenty));
+    }
+    public void onReturnThirty(Integer Thirty) {
+        //thirtybtn.setText(String.valueOf(Thirty));
     }
 
     private void knowDialog(View v) {
@@ -77,6 +96,5 @@ public class fifty_twenty_thirty_method extends AppCompatActivity implements MyD
         SalaryDialog salaryDialog = SalaryDialog.newInstance(user);
         salaryDialog.show(fm, "dialog_salary");
     }
-
 
 }

@@ -87,6 +87,8 @@ public class login_Activity extends AppCompatActivity {
         user.UserID = Integer.valueOf(UserID);
         user.db = db;
         user.setSalary();
+        user.setFifty();
+        user.setTwenty();
         return (user);
     }
 
