@@ -52,7 +52,7 @@ public class fifty_twenty_thirty_method extends AppCompatActivity implements MyD
             salarybtn.setText(String.valueOf(user.getSalary()));
             fiftybtn.setText(String.valueOf(user.getFifty()));
             twentybtn.setText(String.valueOf(user.getTwenty()));
-            //thirtybtn.setText(String.valueOf(user.getThirty()));
+            thirtybtn.setText(String.valueOf(user.getThirty()));
         }
 
         advicebtn.setOnClickListener(new View.OnClickListener() {
@@ -80,7 +80,7 @@ public class fifty_twenty_thirty_method extends AppCompatActivity implements MyD
         twentybtn.setText(String.valueOf(Twenty));
     }
     public void onReturnThirty(Integer Thirty) {
-        //thirtybtn.setText(String.valueOf(Thirty));
+        thirtybtn.setText(String.valueOf(Thirty));
     }
 
     private void knowDialog(View v) {

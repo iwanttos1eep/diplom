@@ -58,10 +58,24 @@ public class SalaryDialog extends DialogFragment {
                 if (user.getSalary() == null) {
                     String insert_string = "INSERT INTO fifty_twenty_thirty (Salary) VALUES ('" + salary_string + "')";
                     user.db.execSQL(insert_string);
+                    String update_fifty = "UPDATE fifty_twenty_thirty SET Fifty = '" + salary_string + "' * '" + 0.5 + "'  WHERE _id = '" + user.UserID + "'";
+                    user.db.execSQL(update_fifty);
+                    String update_twenty = "UPDATE fifty_twenty_thirty SET Twenty = '" + salary_string + "' * '" + 0.2 + "'  WHERE _id = '" + user.UserID + "'";
+                    user.db.execSQL(update_twenty);
+                    String update_thirty = "UPDATE fifty_twenty_thirty SET Thirty =  '" + salary_string + "' * '" + 0.3 + "' WHERE _id = '" + user.UserID + "'";
+                    user.db.execSQL(update_thirty);
+
+
                 }
                 else {
                     String update_string = "UPDATE fifty_twenty_thirty SET Salary = Salary + '" + salary_string + "' WHERE _id = '" + user.UserID + "'";
                     user.db.execSQL(update_string);
+                    String update_fifty = "UPDATE fifty_twenty_thirty SET Fifty = '" + salary_string + "' * '" + 0.5 + "' + Fifty WHERE _id = '" + user.UserID + "'";
+                    user.db.execSQL(update_fifty);
+                    String update_twenty = "UPDATE fifty_twenty_thirty SET Twenty = '" + salary_string + "' * '" + 0.2 + "' + Twenty WHERE _id = '" + user.UserID + "'";
+                    user.db.execSQL(update_twenty);
+                    String update_thirty = "UPDATE fifty_twenty_thirty SET Thirty = '" + salary_string + "' * '" + 0.3 + "' + Thirty WHERE _id = '" + user.UserID + "'";
+                    user.db.execSQL(update_thirty);
                 }
 
                 //передаём число в кнопку дохода
@@ -72,8 +86,22 @@ public class SalaryDialog extends DialogFragment {
                 }
 
                 //передаём число в кнопку 50%
-                String update_fifty = "UPDATE fifty_twenty_thirty SET Fifty = '" + salary_string + "' * '" + 0.5 + "' + Fifty WHERE _id = '" + user.UserID + "'";
-                user.db.execSQL(update_fifty);
+                /*if (user.getFifty() == null ) {
+                    String insert_fifty = "INSERT INTO fifty_twenty_thirty (Fifty) VALUES ('" + salary_string + "' * '" + 0.5 + "')";
+                    String insert_twenty = "INSERT INTO fifty_twenty_thirty (Twenty) VALUES ('" + salary_string + "' * '" + 0.2 + "')";
+                    String insert_thirty = "INSERT INTO fifty_twenty_thirty (Thirty) VALUES ('" + salary_string + "' * '" + 0.3 + "')";
+                    user.db.execSQL(insert_fifty);
+                    user.db.execSQL(insert_twenty);
+                    user.db.execSQL(insert_thirty);
+                }
+                else {
+                    String update_fifty = "UPDATE fifty_twenty_thirty SET Fifty = '" + salary_string + "' * '" + 0.5 + "' + Fifty WHERE _id = '" + user.UserID + "'";
+                    user.db.execSQL(update_fifty);
+                    String update_twenty = "UPDATE fifty_twenty_thirty SET Twenty = '" + salary_string + "' * '" + 0.2 + "' + Twenty WHERE _id = '" + user.UserID + "'";
+                    user.db.execSQL(update_twenty);
+                    String update_thirty = "UPDATE fifty_twenty_thirty SET Thirty = Thirty + '" + salary_string + "' * '" + 0.3 + "' WHERE _id = '" + user.UserID + "'";
+                    user.db.execSQL(update_thirty);
+                }*/
 
                 String select_fifty ="SELECT Fifty FROM fifty_twenty_thirty WHERE _id = '" + user.UserID + "'";
                 Cursor c2 = user.db.rawQuery(select_fifty, null);
@@ -83,9 +111,6 @@ public class SalaryDialog extends DialogFragment {
                 }
 
                 //передаём число в кнопку 20%
-                /*String update_twenty = "UPDATE fifty_twenty_thirty SET Twenty = '" + salary_string + "' * '" + 0.2 + "' + Twenty WHERE _id = '" + user.UserID + "'";
-                user.db.execSQL(update_twenty);
-
                 String select_twenty ="SELECT Twenty FROM fifty_twenty_thirty WHERE _id = '" + user.UserID + "'";
                 Cursor c3 = user.db.rawQuery(select_twenty, null);
                 while(c3.moveToNext()) {
@@ -94,20 +119,17 @@ public class SalaryDialog extends DialogFragment {
                 }
 
                 //передаём число в кнопку 30%
-                String update_thirty = "UPDATE fifty_twenty_thirty SET Thirty = Thirty + '" + salary_string + "' * '" + 0.3 + "' WHERE _id = '" + user.UserID + "'";
-                user.db.execSQL(update_thirty);
-
                 String select_thirty ="SELECT Thirty FROM fifty_twenty_thirty WHERE _id = '" + user.UserID + "'";
                 Cursor c4 = user.db.rawQuery(select_thirty, null);
                 while(c4.moveToNext()) {
                     user.Thirty = Integer.parseInt(String.valueOf(c4.getInt(c4.getColumnIndexOrThrow("Thirty"))));
-                }*/
+                }
 
                 MyDialogFragmentListener activity = (MyDialogFragmentListener) getActivity();
                 activity.onReturnSalary(user.Salary);
                 activity.onReturnFifty(user.Fifty);
                 activity.onReturnTwenty(user.Twenty);
-                //activity.onReturnThirty(user.Thirty);
+                activity.onReturnThirty(user.Thirty);
                 dismiss();
             }
         });

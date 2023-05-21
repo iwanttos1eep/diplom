@@ -89,6 +89,7 @@ public class login_Activity extends AppCompatActivity {
         user.setSalary();
         user.setFifty();
         user.setTwenty();
+        user.setThirty();
         return (user);
     }
 
