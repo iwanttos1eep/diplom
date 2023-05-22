@@ -1,15 +1,13 @@
 package com.example.diplom;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.Toast;
 
 public class fifty_twenty_thirty_method extends AppCompatActivity implements MyDialogFragmentListener  {
     Button advicebtn;
@@ -68,7 +66,21 @@ public class fifty_twenty_thirty_method extends AppCompatActivity implements MyD
                 salaryDialog(v);
             }
         });
+
+        fiftybtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fiftyDialog(v);
+            }
+        });
+        thirtybtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            thirtyDialog(v);
+            }
+        });
     }
+
 
     public void onReturnSalary(Integer Salary) {
         salarybtn.setText(String.valueOf(Salary));
@@ -81,6 +93,12 @@ public class fifty_twenty_thirty_method extends AppCompatActivity implements MyD
     }
     public void onReturnThirty(Integer Thirty) {
         thirtybtn.setText(String.valueOf(Thirty));
+    }
+
+    @Override
+    public void onReturnText() {
+        Toast toast = Toast.makeText(fifty_twenty_thirty_method.this, "Число больше, чем нужно", Toast.LENGTH_LONG);
+        toast.show();
     }
 
     private void knowDialog(View v) {
@@ -97,4 +115,17 @@ public class fifty_twenty_thirty_method extends AppCompatActivity implements MyD
         salaryDialog.show(fm, "dialog_salary");
     }
 
+    private void fiftyDialog (View v) {
+        user.db = db;
+        FragmentManager fm = getSupportFragmentManager();
+        FiftyDialog fiftyDialog = FiftyDialog.newInstance(user);
+        fiftyDialog.show(fm, "activity_fifty_dialog");
+    }
+
+    private void thirtyDialog (View v) {
+        user.db = db;
+        FragmentManager fm = getSupportFragmentManager();
+        ThirtyDialog thirtyDialog = ThirtyDialog.newInstance(user);
+        thirtyDialog.show(fm, "thirty_dialog");
+    }
 }

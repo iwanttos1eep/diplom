@@ -10,9 +10,11 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+
 import java.io.Serializable;
 
-public class AdviceDialog extends DialogFragment {
+public class AdviceDialog extends BottomSheetDialogFragment {
     TextView textAdvice;
 
     public AdviceDialog() {

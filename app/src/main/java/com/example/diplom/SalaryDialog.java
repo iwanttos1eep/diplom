@@ -12,11 +12,12 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.fragment.app.DialogFragment;
+
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import java.io.Serializable;
 
-public class SalaryDialog extends DialogFragment {
+public class SalaryDialog extends BottomSheetDialogFragment {
     Button buttonok;
     Button dohod;
     Button cancelbutton;
@@ -33,7 +34,6 @@ public class SalaryDialog extends DialogFragment {
     @Nullable
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.dialog_salary, container, false);
-
         return v;
     }
 
@@ -65,7 +65,6 @@ public class SalaryDialog extends DialogFragment {
                     String update_thirty = "UPDATE fifty_twenty_thirty SET Thirty =  '" + salary_string + "' * '" + 0.3 + "' WHERE _id = '" + user.UserID + "'";
                     user.db.execSQL(update_thirty);
 
-
                 }
                 else {
                     String update_string = "UPDATE fifty_twenty_thirty SET Salary = Salary + '" + salary_string + "' WHERE _id = '" + user.UserID + "'";
@@ -85,24 +84,8 @@ public class SalaryDialog extends DialogFragment {
                     user.Salary = Integer.valueOf(c.getString(c.getColumnIndexOrThrow("Salary")));
                 }
 
-                //передаём число в кнопку 50%
-                /*if (user.getFifty() == null ) {
-                    String insert_fifty = "INSERT INTO fifty_twenty_thirty (Fifty) VALUES ('" + salary_string + "' * '" + 0.5 + "')";
-                    String insert_twenty = "INSERT INTO fifty_twenty_thirty (Twenty) VALUES ('" + salary_string + "' * '" + 0.2 + "')";
-                    String insert_thirty = "INSERT INTO fifty_twenty_thirty (Thirty) VALUES ('" + salary_string + "' * '" + 0.3 + "')";
-                    user.db.execSQL(insert_fifty);
-                    user.db.execSQL(insert_twenty);
-                    user.db.execSQL(insert_thirty);
-                }
-                else {
-                    String update_fifty = "UPDATE fifty_twenty_thirty SET Fifty = '" + salary_string + "' * '" + 0.5 + "' + Fifty WHERE _id = '" + user.UserID + "'";
-                    user.db.execSQL(update_fifty);
-                    String update_twenty = "UPDATE fifty_twenty_thirty SET Twenty = '" + salary_string + "' * '" + 0.2 + "' + Twenty WHERE _id = '" + user.UserID + "'";
-                    user.db.execSQL(update_twenty);
-                    String update_thirty = "UPDATE fifty_twenty_thirty SET Thirty = Thirty + '" + salary_string + "' * '" + 0.3 + "' WHERE _id = '" + user.UserID + "'";
-                    user.db.execSQL(update_thirty);
-                }*/
 
+                //передаём число в кнопку 50%
                 String select_fifty ="SELECT Fifty FROM fifty_twenty_thirty WHERE _id = '" + user.UserID + "'";
                 Cursor c2 = user.db.rawQuery(select_fifty, null);
                 while(c2.moveToNext()) {

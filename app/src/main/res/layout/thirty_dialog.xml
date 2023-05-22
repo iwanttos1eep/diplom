@@ -26,7 +26,7 @@
             />
 
         <EditText
-            android:id="@+id/salaryedit"
+            android:id="@+id/thirtyedit"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginStart="10dp"
@@ -49,7 +49,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/buttoncancel"
+            android:id="@+id/buttoncancel2"
             style="@style/Widget.Material3.Button.IconButton"
             android:layout_width="81dp"
             android:layout_height="59dp"
@@ -64,7 +64,7 @@
             app:iconTintMode="add" />
 
         <Button
-            android:id="@+id/buttonconfirm"
+            android:id="@+id/buttonconfirm2"
             style="@style/Widget.Material3.Button.IconButton"
             android:layout_width="81dp"
             android:layout_height="59dp"

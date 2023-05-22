@@ -12,6 +12,12 @@
         android:theme="@style/Theme.Diplom"
         tools:targetApi="31">
         <activity
+            android:name=".ThirtyDialog"
+            android:exported="false" />
+        <activity
+            android:name=".FiftyDialog"
+            android:exported="false" />
+        <activity
             android:name=".six_jugs_method"
             android:exported="false" />
         <activity
@@ -22,13 +28,16 @@
             android:exported="false" />
         <activity
             android:name=".methodsActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:noHistory="true" />
         <activity
             android:name=".registration_Activity"
-            android:exported="false" />
+            android:exported="false"
+            android:noHistory="true" />
         <activity
             android:name=".login_Activity"
-            android:exported="false" />
+            android:exported="false"
+            android:noHistory="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
