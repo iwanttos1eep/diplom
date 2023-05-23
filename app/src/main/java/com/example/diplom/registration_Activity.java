@@ -38,24 +38,31 @@ public class registration_Activity extends AppCompatActivity {
             public void onClick(View v) {
                 String Email_string = String.valueOf(email_text.getText());
                 String Password_string = String.valueOf(password_text.getText());
-                System.out.println(Email_string);
-                System.out.println(Password_string);
-                String insert_string = "INSERT INTO USERS (Name, Password) VALUES ('" + Email_string + "','" + Password_string + "')";
 
-                try {
-                    db.execSQL(insert_string);
-                    //System.out.println("Всё сработало");
-                    String this_string = "SELECT _id FROM USERS WHERE Name='" + Email_string + "' AND Password = '" + Password_string + "'";
-                    Cursor c2 = db.rawQuery(this_string, null);
-                    while (c2.moveToNext()) {
-                        UserID = c2.getString(c2.getColumnIndexOrThrow("_id"));
+                if (!Email_string.equals("") || !Password_string.equals("")) {
+
+                    System.out.println(Email_string);
+                    System.out.println(Password_string);
+                    String insert_string = "INSERT INTO USERS (Name, Password) VALUES ('" + Email_string + "','" + Password_string + "')";
+
+                    try {
+                        db.execSQL(insert_string);
+                        //System.out.println("Всё сработало");
+                        String this_string = "SELECT _id FROM USERS WHERE Name='" + Email_string + "' AND Password = '" + Password_string + "'";
+                        Cursor c2 = db.rawQuery(this_string, null);
+                        while (c2.moveToNext()) {
+                            UserID = c2.getString(c2.getColumnIndexOrThrow("_id"));
+                        }
+                        registr(v, UserID);
+
+                    } catch (SQLiteConstraintException e) {
+                        //System.out.println("такой мейл уже существует");
+                        Toast toast = Toast.makeText(registration_Activity.this, "Такой email уже существует", Toast.LENGTH_LONG);
+                        toast.show();
                     }
-                    registr(v, UserID);
-
                 }
-                catch (SQLiteConstraintException e) {
-                    //System.out.println("такой мейл уже существует");
-                    Toast toast = Toast.makeText(registration_Activity.this, "Такой email уже существует", Toast.LENGTH_LONG);
+                else {
+                    Toast toast = Toast.makeText(registration_Activity.this, "Заполнены не все поля", Toast.LENGTH_LONG);
                     toast.show();
                 }
             }

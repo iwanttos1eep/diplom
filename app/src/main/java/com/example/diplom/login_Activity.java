@@ -38,45 +38,51 @@ public class login_Activity extends AppCompatActivity {
             public void onClick(View v) {
                 String username_text = login.getText().toString();
                 String password_text = String.valueOf(password_login.getText());
-                String check_string = "SELECT * FROM USERS WHERE Name='" + username_text + "' AND Password = '" + password_text + "'";
-                Cursor c = db.rawQuery(check_string, null);
-                if (c.getCount() == 0) {
-                    //System.out.println("Такого пользователя не существует!");
-                    Toast toast = Toast.makeText(login_Activity.this, "Такого пользователя не существует", Toast.LENGTH_LONG);
-                    toast.show();
-                }
 
-                else {
-                    String this_string = "SELECT _id FROM USERS WHERE Name='" + username_text + "' AND Password = '" + password_text + "'";
-                    Cursor c2 = db.rawQuery(this_string, null);
-                    while (c2.moveToNext()) {
-                        UserID = c2.getString(c2.getColumnIndexOrThrow("_id"));
+                if (!username_text.equals("") || !password_text.equals("")) {
+
+                    String check_string = "SELECT * FROM USERS WHERE Name='" + username_text + "' AND Password = '" + password_text + "'";
+                    Cursor c = db.rawQuery(check_string, null);
+                    if (c.getCount() == 0) {
+                        //System.out.println("Такого пользователя не существует!");
+                        Toast toast = Toast.makeText(login_Activity.this, "Такого пользователя не существует", Toast.LENGTH_LONG);
+                        toast.show();
                     }
-                    String check_akk_string = "SELECT Purpose FROM USERS WHERE _id = '" + UserID + "'";
-                    Cursor c3 = db.rawQuery(check_akk_string, null);
-                    String check_purp = null;
-                    while (c3.moveToNext())  {
-                        Purpose = c3.getString(c3.getColumnIndexOrThrow("Purpose"));
-                        check_purp = Purpose;
-                    }
-                    try {
-                        switch (check_purp) {
-                            case "1":
-                                choice(v, FindUser(UserID));
-                                break;
-                            case "2": {
-                                choice2(v, UserID);
-                                break;
+                    else {
+                        String this_string = "SELECT _id FROM USERS WHERE Name='" + username_text + "' AND Password = '" + password_text + "'";
+                        Cursor c2 = db.rawQuery(this_string, null);
+                        while (c2.moveToNext()) {
+                            UserID = c2.getString(c2.getColumnIndexOrThrow("_id"));
+                        }
+                        String check_akk_string = "SELECT Purpose FROM USERS WHERE _id = '" + UserID + "'";
+                        Cursor c3 = db.rawQuery(check_akk_string, null);
+                        String check_purp = null;
+                        while (c3.moveToNext()) {
+                            Purpose = c3.getString(c3.getColumnIndexOrThrow("Purpose"));
+                            check_purp = Purpose;
+                        }
+                        try {
+                            switch (check_purp) {
+                                case "1":
+                                    choice(v, FindUser(UserID));
+                                    break;
+                                case "2": {
+                                    choice2(v, UserID);
+                                    break;
+                                }
+                                case "3": {
+                                    choice3(v, UserID);
+                                    break;
+                                }
                             }
-                            case "3": {
-                                choice3(v, UserID);
-                                break;
-                            }
+                        } catch (NullPointerException e) {
+                            logbtn(v, UserID);
                         }
                     }
-                    catch (NullPointerException e) {
-                        logbtn(v, UserID);
-                    }
+                }
+                else {
+                    Toast toast = Toast.makeText(login_Activity.this, "Заполнены не все поля", Toast.LENGTH_LONG);
+                    toast.show();
                 }
             }
         });

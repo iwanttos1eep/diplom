@@ -50,24 +50,20 @@ public class FiftyDialog extends BottomSheetDialogFragment {
                 MyDialogFragmentListener activity = (MyDialogFragmentListener) getActivity();
                 String fifty_string = String.valueOf(fifty_text.getText());
 
-                String select_fifty = "SELECT Fifty FROM fifty_twenty_thirty WHERE _id = '" + user.UserID + "'";
-                Cursor c2 = user.db.rawQuery(select_fifty, null);
-                while (c2.moveToNext()) {
-                    user.Fifty = Integer.parseInt(String.valueOf(c2.getInt(c2.getColumnIndexOrThrow("Fifty"))));
-                }
-
                 int a = Integer.parseInt(fifty_string);
                 if (a > user.Fifty) {
                     activity.onReturnText();
                 }
 
+                else {
                     String fifty_update = "UPDATE fifty_twenty_thirty SET Fifty = Fifty - '" + fifty_string + "' WHERE _id = '" + user.UserID + "'";
-                user.db.execSQL(fifty_update);
+                    user.db.execSQL(fifty_update);
 
-                String select_fifty2 = "SELECT Fifty FROM fifty_twenty_thirty WHERE _id = '" + user.UserID + "'";
-                Cursor c3 = user.db.rawQuery(select_fifty2, null);
-                while (c3.moveToNext()) {
-                    user.Fifty = Integer.parseInt(String.valueOf(c3.getInt(c3.getColumnIndexOrThrow("Fifty"))));
+                    String select_fifty2 = "SELECT Fifty FROM fifty_twenty_thirty WHERE _id = '" + user.UserID + "'";
+                    Cursor c3 = user.db.rawQuery(select_fifty2, null);
+                    while (c3.moveToNext()) {
+                        user.Fifty = Integer.parseInt(String.valueOf(c3.getInt(c3.getColumnIndexOrThrow("Fifty"))));
+                    }
                 }
 
                 activity.onReturnFifty(user.Fifty);

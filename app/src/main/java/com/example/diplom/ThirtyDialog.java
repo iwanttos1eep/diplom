@@ -50,24 +50,20 @@ public class ThirtyDialog extends BottomSheetDialogFragment {
                 MyDialogFragmentListener activity = (MyDialogFragmentListener) getActivity();
                 String thirty_string = String.valueOf(thirty_text.getText());
 
-                String select_thirty = "SELECT Thirty FROM fifty_twenty_thirty WHERE _id = '" + user.UserID + "'";
-                Cursor c2 = user.db.rawQuery(select_thirty, null);
-                while (c2.moveToNext()) {
-                    user.Thirty = Integer.parseInt(String.valueOf(c2.getInt(c2.getColumnIndexOrThrow("Thirty"))));
-                }
-
                 int a = Integer.parseInt(thirty_string);
                 if (a > user.Thirty) {
-                    System.out.println("pizda");
+                    activity.onReturnText();
                 }
 
-                String fifty_update = "UPDATE fifty_twenty_thirty SET Thirty = Thirty - '" + thirty_string + "' WHERE _id = '" + user.UserID + "'";
-                user.db.execSQL(fifty_update);
+                else {
+                    String fifty_update = "UPDATE fifty_twenty_thirty SET Thirty = Thirty - '" + thirty_string + "' WHERE _id = '" + user.UserID + "'";
+                    user.db.execSQL(fifty_update);
 
-                String select_fifty2 = "SELECT Thirty FROM fifty_twenty_thirty WHERE _id = '" + user.UserID + "'";
-                Cursor c3 = user.db.rawQuery(select_fifty2, null);
-                while (c3.moveToNext()) {
-                    user.Thirty = Integer.parseInt(String.valueOf(c3.getInt(c3.getColumnIndexOrThrow("Thirty"))));
+                    String select_fifty2 = "SELECT Thirty FROM fifty_twenty_thirty WHERE _id = '" + user.UserID + "'";
+                    Cursor c3 = user.db.rawQuery(select_fifty2, null);
+                    while (c3.moveToNext()) {
+                        user.Thirty = Integer.parseInt(String.valueOf(c3.getInt(c3.getColumnIndexOrThrow("Thirty"))));
+                    }
                 }
 
                 activity.onReturnThirty(user.Thirty);
