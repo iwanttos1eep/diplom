@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:text="Введите сумму"
             android:gravity="center"
-            android:textSize="15sp"
+            android:textSize="20sp"
             android:textColor="@color/black"
             android:fontFamily="@font/comfortaa_bold"
             />

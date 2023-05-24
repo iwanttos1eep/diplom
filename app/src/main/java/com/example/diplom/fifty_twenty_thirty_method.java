@@ -85,6 +85,12 @@ public class fifty_twenty_thirty_method extends AppCompatActivity implements MyD
             thirtyDialog(v);
             }
         });
+        twentybtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                twentyDialog(v);
+            }
+        });
         updatebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -150,6 +156,12 @@ public class fifty_twenty_thirty_method extends AppCompatActivity implements MyD
         FragmentManager fm = getSupportFragmentManager();
         ThirtyDialog thirtyDialog = ThirtyDialog.newInstance(user);
         thirtyDialog.show(fm, "thirty_dialog");
+    }
+    private void twentyDialog (View v) {
+        user.db = db;
+        FragmentManager fm = getSupportFragmentManager();
+        TwentyDialog twentyDialog = TwentyDialog.newInstance(user);
+        twentyDialog.show(fm, "twenty_dialog");
     }
 
     private void updateDialog (View v) {

@@ -15,14 +15,26 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="22sp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/header"
+            android:fontFamily="@font/comfortaa_bold"
+            />
+
+        <TextView
             android:id="@+id/firstvar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             android:layout_weight="1"
             android:textSize="18sp"
             android:text="@string/firstvar"
-            android:fontFamily="@font/comfortaa_bold"
+            android:fontFamily="@font/comfortaa_medium"
             />
 
         <TextView
@@ -33,7 +45,7 @@
             android:textSize="18sp"
             android:layout_marginTop="15dp"
             android:text="@string/secondvar"
-            android:fontFamily="@font/comfortaa_bold"
+            android:fontFamily="@font/comfortaa_medium"
             />
     </LinearLayout>
 

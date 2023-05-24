@@ -125,23 +125,4 @@ public class methodsActivity extends AppCompatActivity {
         intent.putExtra("user", user);
         startActivity(intent);
     }
-
-    /*private void choice_methods (RadioButton radbtn) {
-        RadioButton first_int = findViewById(R.id.firstmethod);
-        RadioButton second_int = findViewById(R.id.secondmethod);
-        RadioButton third_int = findViewById(R.id.thirdmethod);
-
-        if (radbtn == first_int) {
-            String insert_string = "INSERT INTO USERS (Purpose) VALUES ('" + 1 + "')";
-            db.execSQL(insert_string);
-        }
-        else if (radbtn == second_int) {
-            String insert_string = "INSERT INTO USERS (Purpose) VALUES ('" + 2 + "')";
-            db.execSQL(insert_string);
-        }
-        if (radbtn == third_int) {
-            String insert_string = "INSERT INTO USERS (Purpose) VALUES ('" + 3 + "')";
-            db.execSQL(insert_string);
-        }
-    }*/
 }

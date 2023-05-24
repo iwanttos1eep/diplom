@@ -9,6 +9,8 @@
     <string name="btnreg">РЕГИСТРАЦИЯ</string>
     <string name="btnlog">ВХОД</string>
     <string name="choicetext">Выбор метода</string>
-    <string name="firstvar">1. Распределить оставшийся бюджет на новый месяц. Сбережения сохраняются </string>
-    <string name="secondvar">2. Посмотреть сэкономленную сумму и обновить значения</string>
+    <string name="firstvar">1. Распределить оставшийся бюджет из 50% и 30% на новый месяц. Сбережения сохраняются </string>
+    <string name="secondvar">2. Посмотреть сэкономленную сумму и обновить все иконки</string>
+    <string name="header">Выберите, \n что вы хотите сделать с оставшимися деньгами</string>
+    <string name="shit">Хотите \n потратить сбережения? </string>
 </resources>

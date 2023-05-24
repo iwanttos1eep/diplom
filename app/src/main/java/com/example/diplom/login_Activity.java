@@ -71,7 +71,7 @@ public class login_Activity extends AppCompatActivity {
                                     break;
                                 }
                                 case "3": {
-                                    choice3(v, UserID);
+                                    choice3(v, FindUser(UserID));
                                     break;
                                 }
                             }
@@ -119,9 +119,7 @@ public class login_Activity extends AppCompatActivity {
         intent.putExtra("user", user);
         startActivity(intent);
     }
-    public void choice3(View v, String UserID) {
-        User user = new User();
-        user.UserID = Integer.valueOf(UserID);
+    public void choice3(View v, User user) {
         Intent intent = new Intent(this, six_jugs_method.class);
         intent.putExtra("user", user);
         startActivity(intent);

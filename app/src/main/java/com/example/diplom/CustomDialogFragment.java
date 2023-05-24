@@ -13,7 +13,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
-public class CustomDialogFragment extends DialogFragment  {
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+
+public class CustomDialogFragment extends DialogFragment {
     DatabaseHelper sqlHelper;
     SQLiteDatabase db;
     static String description;
@@ -21,35 +23,28 @@ public class CustomDialogFragment extends DialogFragment  {
     static final int DIALOG_SECOND_ID = 2;
     static final int DIALOG_THIRD_ID = 3;
 
-
-
-
-    public void Purpose_Description() {
-         sqlHelper = new DatabaseHelper(getActivity());
-         db = sqlHelper.open();
-
-         Cursor cursor_description1 = db.rawQuery("SELECT Description FROM Purpose WHERE _idPurpose ='"+ "'", null);
-        while (cursor_description1.moveToNext()) {
-            description = cursor_description1.getString(cursor_description1.getColumnIndexOrThrow("Description"));
-        }
-    }
-
     public static AlertDialog getDialog(Activity activity, int id) {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+
 
         switch (id) {
             case DIALOG_FIRST_ID: // Диалоговое окно About
                 return builder
                         .setTitle("50-20-30")
                         .setIcon(android.R.drawable.ic_dialog_info)
-                        .setMessage(description)
+                        .setMessage("К затратам в категории 50% относятся " +
+                                "продукты питания, оплата жилья и коммунальных услуг, страхование, " +
+                                "автомобильные платежи, транспортные расходы. \n \n" +
+                                "Категория 30% является категорией развлечений и" +
+                                " включает в себя всё, без чего можно обойтись \n \n" +
+                                "20% уходит на сбережения и подушку безопасности" )
                         .setPositiveButton("OK", null)
                         .create();
             case DIALOG_SECOND_ID:
                 return builder
                         .setTitle("4 конверта")
                         .setIcon(android.R.drawable.ic_dialog_info)
-                        .setMessage("Для закрытия окна нажмите ОК")
+                        .setMessage("")
                         .setPositiveButton("OK", null)
                         .create();
             case DIALOG_THIRD_ID:
