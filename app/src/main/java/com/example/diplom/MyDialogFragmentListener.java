@@ -6,6 +6,8 @@ public interface MyDialogFragmentListener {
     public void onReturnTwenty(Integer Twenty);
     public void onReturnThirty(Integer Thirty);
     public void onReturnText();
+    public void onReturnNull();
+    public void onReturnUpdate(Integer Update);
 
 }
 

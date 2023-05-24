@@ -3,10 +3,12 @@ package com.example.diplom;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
+import android.annotation.SuppressLint;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class fifty_twenty_thirty_method extends AppCompatActivity implements MyDialogFragmentListener  {
@@ -15,6 +17,8 @@ public class fifty_twenty_thirty_method extends AppCompatActivity implements MyD
     Button fiftybtn;
     Button twentybtn;
     Button thirtybtn;
+    Button updatebtn;
+    TextView update;
     DatabaseHelper sqlHelper;
     SQLiteDatabase db;
     User user;
@@ -32,6 +36,8 @@ public class fifty_twenty_thirty_method extends AppCompatActivity implements MyD
         fiftybtn = findViewById(R.id.fifty_percent);
         twentybtn = findViewById(R.id.twenty_percent);
         thirtybtn = findViewById(R.id.thirty_percent);
+        updatebtn = findViewById(R.id.updatebutton);
+        update = findViewById(R.id.savingmoney);
 
         sqlHelper = new DatabaseHelper(this);
         db = sqlHelper.open();
@@ -79,6 +85,12 @@ public class fifty_twenty_thirty_method extends AppCompatActivity implements MyD
             thirtyDialog(v);
             }
         });
+        updatebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updateDialog(v);
+            }
+        });
     }
 
 
@@ -97,8 +109,19 @@ public class fifty_twenty_thirty_method extends AppCompatActivity implements MyD
 
     @Override
     public void onReturnText() {
-        Toast toast = Toast.makeText(fifty_twenty_thirty_method.this, "Число больше, чем нужно", Toast.LENGTH_LONG);
+        Toast toast = Toast.makeText(fifty_twenty_thirty_method.this, "Число, которое вы ввели оказалось больше, чем у вас осталось средств", Toast.LENGTH_LONG);
         toast.show();
+    }
+
+    @Override
+    public void onReturnNull() {
+        Toast toast = Toast.makeText(fifty_twenty_thirty_method.this, "Вы ничего не ввели", Toast.LENGTH_LONG);
+        toast.show();
+    }
+
+    @Override
+    public void onReturnUpdate(Integer Update) {
+        update.setText("Вы сэкономили: " + Update + " ₽    ");
     }
 
     private void knowDialog(View v) {
@@ -127,5 +150,12 @@ public class fifty_twenty_thirty_method extends AppCompatActivity implements MyD
         FragmentManager fm = getSupportFragmentManager();
         ThirtyDialog thirtyDialog = ThirtyDialog.newInstance(user);
         thirtyDialog.show(fm, "thirty_dialog");
+    }
+
+    private void updateDialog (View v) {
+        user.db = db;
+        FragmentManager fm = getSupportFragmentManager();
+        ReloadDialog reloadDialog = ReloadDialog.newInstance(user);
+        reloadDialog.show(fm, "reload_dialog");
     }
 }

@@ -12,6 +12,9 @@
         android:theme="@style/Theme.Diplom"
         tools:targetApi="31">
         <activity
+            android:name=".ReloadDialog"
+            android:exported="false" />
+        <activity
             android:name=".ThirtyDialog"
             android:exported="false" />
         <activity

@@ -49,25 +49,27 @@ public class ThirtyDialog extends BottomSheetDialogFragment {
             public void onClick(View v) {
                 MyDialogFragmentListener activity = (MyDialogFragmentListener) getActivity();
                 String thirty_string = String.valueOf(thirty_text.getText());
+                try {
+                    int a = Integer.parseInt(thirty_string);
+                    if (a > user.Thirty) {
+                        activity.onReturnText();
+                    } else {
+                        String fifty_update = "UPDATE fifty_twenty_thirty SET Thirty = Thirty - '" + thirty_string + "' WHERE _id = '" + user.UserID + "'";
+                        user.db.execSQL(fifty_update);
 
-                int a = Integer.parseInt(thirty_string);
-                if (a > user.Thirty) {
-                    activity.onReturnText();
-                }
-
-                else {
-                    String fifty_update = "UPDATE fifty_twenty_thirty SET Thirty = Thirty - '" + thirty_string + "' WHERE _id = '" + user.UserID + "'";
-                    user.db.execSQL(fifty_update);
-
-                    String select_fifty2 = "SELECT Thirty FROM fifty_twenty_thirty WHERE _id = '" + user.UserID + "'";
-                    Cursor c3 = user.db.rawQuery(select_fifty2, null);
-                    while (c3.moveToNext()) {
-                        user.Thirty = Integer.parseInt(String.valueOf(c3.getInt(c3.getColumnIndexOrThrow("Thirty"))));
+                        String select_fifty2 = "SELECT Thirty FROM fifty_twenty_thirty WHERE _id = '" + user.UserID + "'";
+                        Cursor c3 = user.db.rawQuery(select_fifty2, null);
+                        while (c3.moveToNext()) {
+                            user.Thirty = Integer.parseInt(String.valueOf(c3.getInt(c3.getColumnIndexOrThrow("Thirty"))));
+                        }
+                        activity.onReturnThirty(user.Thirty);
+                        dismiss();
                     }
                 }
+                catch (NumberFormatException e) {
+                    activity.onReturnNull();
+                }
 
-                activity.onReturnThirty(user.Thirty);
-                dismiss();
             }
         });
         buttoncancel1.setOnClickListener(new View.OnClickListener() {
