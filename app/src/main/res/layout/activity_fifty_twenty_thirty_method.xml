@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f5f1da"
+    android:background="#F6F7D7"
     tools:context=".fifty_twenty_thirty_method">
 
 
@@ -13,28 +13,40 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-        android:layout_marginTop="-0dp"
+        android:layout_marginTop="0dp"
         android:layout_marginBottom="0dp"
         android:orientation="vertical">
 
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
-            android:layout_height="35dp"
+            android:layout_height="55dp"
             android:layout_marginStart="0dp"
             android:layout_marginTop="0dp"
-            android:background="#96bb7c" />
+            android:background="#d8d7f7" />
 
         <TextView
             android:id="@+id/savingmoney"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:layout_marginBottom="-30dp"
             android:layout_marginTop="7dp"
+            android:layout_marginBottom="-30dp"
             android:fontFamily="@font/comfortaa_bold"
             android:text=""
             android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/calculator"
+            style="@style/Widget.Material3.Button.IconButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="-60dp"
+            android:fontFamily="@font/comfortaa_bold"
+            android:text="КАЛЬКУЛЯТОР"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/dohodbtn"
@@ -68,8 +80,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
-            android:layout_marginTop="-0dp"
             android:layout_marginStart="6dp"
+            android:layout_marginTop="-0dp"
             android:fontFamily="@font/comfortaa_bold"
             android:text="Обновить бюджет?"
             android:textSize="20sp" />
@@ -80,7 +92,7 @@
             android:layout_height="35dp"
             android:layout_marginStart="0dp"
             android:layout_marginTop="20dp"
-            android:background="#96bb7c" />
+            android:background="#d8d7f7" />
 
     </LinearLayout>
 
@@ -127,8 +139,8 @@
                 android:id="@+id/textView7"
                 android:layout_width="match_parent"
                 android:layout_height="74dp"
-                android:layout_marginBottom="5dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
                 android:fontFamily="@font/comfortaa_bold"
                 android:text="Обяза-\nтельные траты"
                 android:textAlignment="center"
@@ -144,7 +156,7 @@
             android:layout_marginStart="5dp"
             android:layout_marginTop="0dp"
             android:layout_weight="1"
-            android:background="#96bb7c" />
+            android:background="#d8d7f7" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -179,10 +191,10 @@
                 android:id="@+id/textView8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="10dp"
                 android:layout_marginStart="5dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
                 android:fontFamily="@font/comfortaa_bold"
                 android:text="Сбереже-\nния"
                 android:textAlignment="center"
@@ -198,7 +210,7 @@
             android:layout_marginStart="5dp"
             android:layout_marginTop="0dp"
             android:layout_weight="1"
-            android:background="#96bb7c" />
+            android:background="#d8d7f7" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -232,10 +244,10 @@
                 android:id="@+id/textView9"
                 android:layout_width="match_parent"
                 android:layout_height="74dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="10dp"
                 android:layout_marginStart="5dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
                 android:fontFamily="@font/comfortaa_bold"
                 android:text="Развлече-\nния"
                 android:textAlignment="center"
@@ -259,7 +271,7 @@
             android:layout_height="35dp"
             android:layout_marginStart="0dp"
             android:layout_marginTop="0dp"
-            android:background="#96bb7c" />
+            android:background="#d8d7f7" />
 
         <Button
             android:id="@+id/buttnadvice"

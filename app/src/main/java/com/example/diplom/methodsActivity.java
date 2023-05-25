@@ -125,4 +125,5 @@ public class methodsActivity extends AppCompatActivity {
         intent.putExtra("user", user);
         startActivity(intent);
     }
+
 }

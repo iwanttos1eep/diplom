@@ -96,6 +96,13 @@ public class login_Activity extends AppCompatActivity {
         user.setFifty();
         user.setTwenty();
         user.setThirty();
+        user.setProducts();
+        user.setTransport();
+        user.setFood();
+        user.setEntertainment();
+        user.setMobile();
+        user.setClothes();
+        user.setTogether();
         return (user);
     }
 

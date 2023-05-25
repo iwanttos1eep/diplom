@@ -69,7 +69,6 @@ public class ThirtyDialog extends BottomSheetDialogFragment {
                 catch (NumberFormatException e) {
                     activity.onReturnNull();
                 }
-
             }
         });
         buttoncancel1.setOnClickListener(new View.OnClickListener() {

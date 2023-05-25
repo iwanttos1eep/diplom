@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -11,17 +12,13 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class fifty_twenty_thirty_method extends AppCompatActivity implements MyDialogFragmentListener  {
-    Button advicebtn;
-    Button salarybtn;
-    Button fiftybtn;
-    Button twentybtn;
-    Button thirtybtn;
-    Button updatebtn;
+public class fifty_twenty_thirty_method extends AppCompatActivity implements MyDialogFragmentListener {
+    Button advicebtn, salarybtn, fiftybtn, twentybtn, thirtybtn, updatebtn, calc;
     TextView update;
     DatabaseHelper sqlHelper;
     SQLiteDatabase db;
     User user;
+    String UserID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,21 +35,15 @@ public class fifty_twenty_thirty_method extends AppCompatActivity implements MyD
         thirtybtn = findViewById(R.id.thirty_percent);
         updatebtn = findViewById(R.id.updatebutton);
         update = findViewById(R.id.savingmoney);
+        calc = findViewById(R.id.calculator);
 
         sqlHelper = new DatabaseHelper(this);
         db = sqlHelper.open();
 
-            //если в таблице нет _id, то вставить новый
-            if (user.UserID == null) {
-                String insert_id = "INSERT INTO fifty_twenty_thirty (_id) VALUES ('" + user.UserID + "')";
-                db.execSQL(insert_id);
-            }
 
         if (user.getSalary() == null) {
             salarybtn.setText("0");
-        }
-
-        else {
+        } else {
             salarybtn.setText(String.valueOf(user.getSalary()));
             fiftybtn.setText(String.valueOf(user.getFifty()));
             twentybtn.setText(String.valueOf(user.getTwenty()));
@@ -82,7 +73,7 @@ public class fifty_twenty_thirty_method extends AppCompatActivity implements MyD
         thirtybtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            thirtyDialog(v);
+                thirtyDialog(v);
             }
         });
         twentybtn.setOnClickListener(new View.OnClickListener() {
@@ -97,18 +88,37 @@ public class fifty_twenty_thirty_method extends AppCompatActivity implements MyD
                 updateDialog(v);
             }
         });
+        calc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                calculattor(v, SelectUser());
+            }
+        });
     }
 
-
+    public User SelectUser() {
+        user.db = db;
+        user.setProducts();
+        user.setTransport();
+        user.setFood();
+        user.setEntertainment();
+        user.setMobile();
+        user.setClothes();
+        user.setTogether();
+        return user;
+    }
     public void onReturnSalary(Integer Salary) {
         salarybtn.setText(String.valueOf(Salary));
     }
+
     public void onReturnFifty(Integer Fifty) {
         fiftybtn.setText(String.valueOf(Fifty));
     }
+
     public void onReturnTwenty(Integer Twenty) {
         twentybtn.setText(String.valueOf(Twenty));
     }
+
     public void onReturnThirty(Integer Thirty) {
         thirtybtn.setText(String.valueOf(Thirty));
     }
@@ -137,37 +147,44 @@ public class fifty_twenty_thirty_method extends AppCompatActivity implements MyD
         adviceDialog.show(fm, "dialog_advice");
     }
 
-    private void salaryDialog (View v) {
+    private void salaryDialog(View v) {
         user.db = db;
         FragmentManager fm = getSupportFragmentManager();
         SalaryDialog salaryDialog = SalaryDialog.newInstance(user);
         salaryDialog.show(fm, "dialog_salary");
     }
 
-    private void fiftyDialog (View v) {
+    private void fiftyDialog(View v) {
         user.db = db;
         FragmentManager fm = getSupportFragmentManager();
         FiftyDialog fiftyDialog = FiftyDialog.newInstance(user);
         fiftyDialog.show(fm, "activity_fifty_dialog");
     }
 
-    private void thirtyDialog (View v) {
+    private void thirtyDialog(View v) {
         user.db = db;
         FragmentManager fm = getSupportFragmentManager();
         ThirtyDialog thirtyDialog = ThirtyDialog.newInstance(user);
         thirtyDialog.show(fm, "thirty_dialog");
     }
-    private void twentyDialog (View v) {
+
+    private void twentyDialog(View v) {
         user.db = db;
         FragmentManager fm = getSupportFragmentManager();
         TwentyDialog twentyDialog = TwentyDialog.newInstance(user);
         twentyDialog.show(fm, "twenty_dialog");
     }
 
-    private void updateDialog (View v) {
+    private void updateDialog(View v) {
         user.db = db;
         FragmentManager fm = getSupportFragmentManager();
         ReloadDialog reloadDialog = ReloadDialog.newInstance(user);
         reloadDialog.show(fm, "reload_dialog");
+    }
+
+    public void calculattor(View v, User user) {
+        Intent intent = new Intent(this, Calculator.class);
+        intent.putExtra("user", user);
+        startActivity(intent);
     }
 }

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Введите сумму"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/comfortaa_bold"
+            />
+
+        <EditText
+            android:id="@+id/productsedit"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="20dp"
+            android:hint="Сумма"
+            android:backgroundTint="#e95562"
+            android:textCursorDrawable="@drawable/cursor_color_products"
+            android:fontFamily="@font/comfortaa_bold"
+            android:inputType="number"
+            android:text="" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="277dp"
+        android:layout_height="70dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="134dp"
+        android:layout_marginTop="118dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/buttoncancel4"
+            style="@style/Widget.Material3.Button.IconButton"
+            android:layout_width="81dp"
+            android:layout_height="59dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="0dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/comfortaa_bold"
+            android:gravity="center"
+            android:text="Отмена"
+            android:textColor="#e95562"
+            android:textSize="16sp"
+            app:iconTintMode="add"
+            />
+
+        <Button
+            android:id="@+id/buttonconfirm4"
+            style="@style/Widget.Material3.Button.IconButton"
+            android:layout_width="81dp"
+            android:layout_height="59dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="0dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/comfortaa_bold"
+            android:gravity="center"
+            android:text="OK"
+            android:textColor="#e95562"
+            android:textSize="16sp"
+            app:iconTint="#e95562" />
+
+    </LinearLayout>
+
+</RelativeLayout>

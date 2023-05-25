@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Calculator">
+
+    <LinearLayout
+        android:id="@+id/cock"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:background="#d8d7f7" />
+
+        <Button
+            android:id="@+id/getBack"
+            style="@style/Widget.Material3.Button.IconButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="-60dp"
+            android:fontFamily="@font/comfortaa_bold"
+            android:text="НАЗАД"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/comfortaa_bold"
+            android:gravity="center"
+            android:text="Всего потрачено:"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/together"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/comfortaa_bold"
+            android:gravity="center"
+            android:text=""
+            android:textSize="30sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/dick"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cock"
+        android:orientation="horizontal"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/products"
+                style="@style/Widget.Material3.Button.IconButton.Filled"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="50dp"
+                android:backgroundTint="#e95562"
+                android:backgroundTintMode="src_in"
+                android:fontFamily="@font/comfortaa_bold"
+                android:text="0"
+                android:textColor="#4A266A"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/comfortaa_bold"
+                android:gravity="center"
+                android:text="Продукты\n"
+                android:textSize="16sp"
+                />
+
+            <Button
+                android:id="@+id/entertainment"
+                style="@style/Widget.Material3.Button.IconButton.Filled"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="#9355e9"
+                android:backgroundTintMode="src_in"
+                android:fontFamily="@font/comfortaa_bold"
+                android:text="0"
+                android:textColor="#4A266A"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/comfortaa_bold"
+                android:gravity="center"
+                android:text="Развлечения"
+                android:textSize="16sp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/transport"
+                style="@style/Widget.Material3.Button.IconButton.Filled"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="50dp"
+                android:backgroundTint="#ace955"
+                android:backgroundTintMode="src_in"
+                android:fontFamily="@font/comfortaa_bold"
+                android:text="0"
+                android:textColor="#4A266A"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/comfortaa_bold"
+                android:gravity="center"
+                android:text="Транспорт\n"
+                android:textSize="16sp"
+                />
+
+            <Button
+                android:id="@+id/mobile"
+                style="@style/Widget.Material3.Button.IconButton.Filled"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="#DE95BA"
+                android:backgroundTintMode="src_in"
+                android:fontFamily="@font/comfortaa_bold"
+                android:text="0"
+                android:textColor="#4A266A"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/comfortaa_bold"
+                android:gravity="center"
+                android:text="Связь"
+                android:textSize="16sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/restraunt"
+                style="@style/Widget.Material3.Button.IconButton.Filled"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="50dp"
+                android:backgroundTint="#55e9dd"
+                android:backgroundTintMode="src_in"
+                android:fontFamily="@font/comfortaa_bold"
+                android:text="0"
+                android:textColor="#4A266A"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textView17"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/comfortaa_bold"
+                android:gravity="center"
+                android:text="Еда  вне дома"
+                android:textSize="16sp"/>
+
+            <Button
+                android:id="@+id/clothes"
+                style="@style/Widget.Material3.Button.IconButton.Filled"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="#cbc957"
+                android:backgroundTintMode="src_in"
+                android:fontFamily="@font/comfortaa_bold"
+                android:text="0"
+                android:textColor="#4A266A"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textView18"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/comfortaa_bold"
+                android:gravity="center"
+                android:text="Одежда"
+                android:textSize="16sp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/dick"
+        android:orientation="vertical">
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/idBarChart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+
+</RelativeLayout>
