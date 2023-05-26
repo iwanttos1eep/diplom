@@ -82,6 +82,7 @@ public class OtherDialog extends BottomSheetDialogFragment {
                         while (c2.moveToNext()) {
                             user.Together = Integer.parseInt(String.valueOf(c2.getInt(c2.getColumnIndexOrThrow("Together"))));
                         }
+                        activity.onReturn();
                         activity.onReturnOther(user.Other);
                         activity.onReturnTogether(user.Together);
                         dismiss();

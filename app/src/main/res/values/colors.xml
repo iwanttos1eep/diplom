@@ -10,6 +10,13 @@
     <color name="backgroundcolor">#f5f1da</color>
     <color name="buttonscolor">#eebb4d</color>
     <color name="objectscolor">#d8d7f7</color>
-     96bb7c - хуй знает
+
+    <color name="firstcolor">#e95562</color>
+    <color name="seccolor">#ace955</color>
+    <color name="thirtcolor">#55e9dd</color>
+    <color name="fourcolor">#9355e9</color>
+    <color name="fifthcolor">#DE95BA</color>
+    <color name="sixcolor">#cbc957</color>
+
     FBCEB1 - персиковый
 </resources>

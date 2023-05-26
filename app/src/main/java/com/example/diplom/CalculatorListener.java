@@ -9,4 +9,5 @@ public interface CalculatorListener {
     public void onReturnEntertainment(Integer Entertainment);
     public void onReturnClothes(Integer Clothes);
     public void onReturnOther (Integer Other);
+    public void onReturn ();
 }

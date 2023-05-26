@@ -88,6 +88,7 @@ public class ProductsDialog extends BottomSheetDialogFragment {
                         }
                         System.out.println(user.Products + " это прокудты и айди юзера в диалоге продуктов " + user.Together);
 
+                        activity.onReturn();
                         activity.onReturnProducts(user.Products);
                         activity.onReturnTogether(user.Together);
                         dismiss();

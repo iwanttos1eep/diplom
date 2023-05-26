@@ -84,6 +84,7 @@ public class EntertainmentDialog extends BottomSheetDialogFragment {
                         while (c2.moveToNext()) {
                             user.Together = Integer.parseInt(String.valueOf(c2.getInt(c2.getColumnIndexOrThrow("Together"))));
                         }
+                        activity.onReturn();
                         activity.onReturnEntertainment(user.Entertainment);
                         activity.onReturnTogether(user.Together);
                         dismiss();

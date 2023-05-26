@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,6 +13,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
 
@@ -22,6 +28,9 @@ public class Calculator extends AppCompatActivity implements CalculatorListener 
     SQLiteDatabase db;
     ArrayList barArrayList;
     BarChart barChart;
+    BarData barData;
+    BarDataSet barDataSet;
+    ArrayList barEntriesArrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +64,11 @@ public class Calculator extends AppCompatActivity implements CalculatorListener 
             other.setText(String.valueOf(user.getOther()));
             togetherText.setText(String.valueOf(user.getTogether() + " ₽"));
         }
+        getBarEntries();
+        barDataSet = new BarDataSet(barEntriesArrayList, "Ваши траты");
+        barData = new BarData(barDataSet);
+        barChart.setData(barData);
+
 
         products.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -135,6 +149,14 @@ public class Calculator extends AppCompatActivity implements CalculatorListener 
         other.setText(String.valueOf(Other));
     }
 
+    @Override
+    public void onReturn() {
+        getBarEntries();
+        barDataSet = new BarDataSet(barEntriesArrayList, "Ваши траты");
+        barData = new BarData(barDataSet);
+        barChart.setData(barData);
+    }
+
     public void productsDialog(View v) {
         user.db = db;
         FragmentManager fm = getSupportFragmentManager();
@@ -175,5 +197,17 @@ public class Calculator extends AppCompatActivity implements CalculatorListener 
         FragmentManager fm = getSupportFragmentManager();
         OtherDialog otherDialog = OtherDialog.newInstance(user);
         otherDialog.show(fm, "clothes_dialog");
+    }
+
+    private void getBarEntries() {
+        // creating a new array list
+        barEntriesArrayList = new ArrayList<>();
+
+        barEntriesArrayList.add(new BarEntry(1, user.Products));
+        barEntriesArrayList.add(new BarEntry(2, user.Transport));
+        barEntriesArrayList.add(new BarEntry(3, user.Food));
+        barEntriesArrayList.add(new BarEntry(4, user.Entertainment));
+        barEntriesArrayList.add(new BarEntry(5, user.Clothes));
+        barEntriesArrayList.add(new BarEntry(6, user.Other));
     }
 }
