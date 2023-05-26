@@ -14,9 +14,9 @@ import com.github.mikephil.charting.charts.BarChart;
 
 import java.util.ArrayList;
 
-public class Calculator extends AppCompatActivity implements CalculatorListener{
+public class Calculator extends AppCompatActivity implements CalculatorListener {
     User user;
-    Button products, transport, food, entertainment, mobile, clothes;
+    Button products, transport, food, entertainment, other, clothes;
     TextView togetherText;
     DatabaseHelper sqlHelper;
     SQLiteDatabase db;
@@ -35,8 +35,8 @@ public class Calculator extends AppCompatActivity implements CalculatorListener{
         transport = findViewById(R.id.transport);
         food = findViewById(R.id.restraunt);
         entertainment = findViewById(R.id.entertainment);
-        mobile = findViewById(R.id.mobile);
         clothes = findViewById(R.id.clothes);
+        other = findViewById(R.id.others);
         togetherText = findViewById(R.id.together);
         barChart = findViewById(R.id.idBarChart);
 
@@ -44,16 +44,15 @@ public class Calculator extends AppCompatActivity implements CalculatorListener{
         db = sqlHelper.open();
 
 
-        if (user.getTogether()== null) {
+        if (user.getTogether() == null) {
             togetherText.setText("0 ₽");
-        }
-        else {
+        } else {
             products.setText(String.valueOf(user.getProducts()));
             transport.setText(String.valueOf(user.getTransport()));
             food.setText(String.valueOf(user.getFood()));
             entertainment.setText(String.valueOf(user.getEntertainment()));
-            mobile.setText(String.valueOf(user.getMobile()));
             clothes.setText(String.valueOf(user.getClothes()));
+            other.setText(String.valueOf(user.getOther()));
             togetherText.setText(String.valueOf(user.getTogether() + " ₽"));
         }
 
@@ -73,6 +72,24 @@ public class Calculator extends AppCompatActivity implements CalculatorListener{
             @Override
             public void onClick(View v) {
                 foodDialog(v);
+            }
+        });
+        entertainment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                entertainmentDialog(v);
+            }
+        });
+        clothes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clothesDialog(v);
+            }
+        });
+        other.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                otherDialog(v);
             }
         });
     }
@@ -103,6 +120,21 @@ public class Calculator extends AppCompatActivity implements CalculatorListener{
         food.setText(String.valueOf(Food));
     }
 
+    @Override
+    public void onReturnEntertainment(Integer Entertainment) {
+        entertainment.setText(String.valueOf(Entertainment));
+    }
+
+    @Override
+    public void onReturnClothes(Integer Clothes) {
+        clothes.setText(String.valueOf(Clothes));
+    }
+
+    @Override
+    public void onReturnOther(Integer Other) {
+        other.setText(String.valueOf(Other));
+    }
+
     public void productsDialog(View v) {
         user.db = db;
         FragmentManager fm = getSupportFragmentManager();
@@ -116,10 +148,32 @@ public class Calculator extends AppCompatActivity implements CalculatorListener{
         TransportDialog transportDialog = TransportDialog.newInstance(user);
         transportDialog.show(fm, "transport_dialog");
     }
+
     public void foodDialog(View v) {
         user.db = db;
         FragmentManager fm = getSupportFragmentManager();
         FoodDialog foodDialog = FoodDialog.newInstance(user);
         foodDialog.show(fm, "transport_dialog");
+    }
+
+    public void entertainmentDialog(View v) {
+        user.db = db;
+        FragmentManager fm = getSupportFragmentManager();
+        EntertainmentDialog entertainmentDialog = EntertainmentDialog.newInstance(user);
+        entertainmentDialog.show(fm, "entertainment_dialog");
+    }
+
+    public void clothesDialog(View v) {
+        user.db = db;
+        FragmentManager fm = getSupportFragmentManager();
+        ClothesDialog clothesDialog = ClothesDialog.newInstance(user);
+        clothesDialog.show(fm, "clothes_dialog");
+    }
+
+    public void otherDialog(View v) {
+        user.db = db;
+        FragmentManager fm = getSupportFragmentManager();
+        OtherDialog otherDialog = OtherDialog.newInstance(user);
+        otherDialog.show(fm, "clothes_dialog");
     }
 }

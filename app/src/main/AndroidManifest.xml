@@ -12,6 +12,15 @@
         android:theme="@style/Theme.Diplom"
         tools:targetApi="31">
         <activity
+            android:name=".OtherDialog"
+            android:exported="false" />
+        <activity
+            android:name=".ClothesDialog"
+            android:exported="false" />
+        <activity
+            android:name=".EntertainmentDialog"
+            android:exported="false" />
+        <activity
             android:name=".FoodDialog"
             android:exported="false" />
         <activity

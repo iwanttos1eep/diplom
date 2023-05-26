@@ -8,7 +8,7 @@ import java.io.Serializable;
 public class User implements Serializable {
 
     public String Advice;
-    public Integer Salary, UserID, Fifty, Twenty, Thirty, Products, Transport, Food, Entertainment, Mobile, Clothes, Together;
+    public Integer Salary, UserID, Fifty, Twenty, Thirty, Products, Transport, Food, Entertainment, Other, Clothes, Together;
     public transient SQLiteDatabase db;
 
     public User() {
@@ -34,7 +34,7 @@ public class User implements Serializable {
     public Integer getTransport() {return (this.Transport);}
     public Integer getFood() {return (this.Food);}
     public Integer getEntertainment() {return (this.Entertainment);}
-    public Integer getMobile() {return  (this.Mobile);}
+    public Integer getOther() {return  (this.Other);}
     public Integer getClothes() {return (this.Clothes);}
     public Integer getTogether() {return (this.Together);}
 
@@ -106,11 +106,11 @@ public class User implements Serializable {
             this.Entertainment = Integer.parseInt(String.valueOf(c2.getInt(c2.getColumnIndexOrThrow("Entertainment"))));
         }
     }
-    public void setMobile() {
-        String select_string = "SELECT Mobile FROM Calculator WHERE _id = '" + this.UserID + "'";
+    public void setOther() {
+        String select_string = "SELECT Other FROM Calculator WHERE _id = '" + this.UserID + "'";
         Cursor c2 = db.rawQuery(select_string, null);
         while (c2.moveToNext()) {
-            this.Mobile = Integer.parseInt(String.valueOf(c2.getInt(c2.getColumnIndexOrThrow("Mobile"))));
+            this.Other = Integer.parseInt(String.valueOf(c2.getInt(c2.getColumnIndexOrThrow("Other"))));
         }
     }
     public void setClothes() {

@@ -16,13 +16,12 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import java.io.Serializable;
 
-public class FoodDialog extends BottomSheetDialogFragment {
+public class OtherDialog extends BottomSheetDialogFragment {
 
     Button confirmbtn, cancelbtn;
 
-
-    public static FoodDialog newInstance(Serializable user) {
-        FoodDialog fragment = new FoodDialog();
+    public static OtherDialog newInstance(Serializable user) {
+        OtherDialog fragment = new OtherDialog();
         Bundle args = new Bundle();
         args.putSerializable("user", user);
         fragment.setArguments(args);
@@ -31,60 +30,59 @@ public class FoodDialog extends BottomSheetDialogFragment {
 
     @Nullable
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.food_dialog, container, false);
+        View v = inflater.inflate(R.layout.other_dialog, container, false);
         return v;
     }
     public void onViewCreated(View v, Bundle savedInstanceState) {
         super.onViewCreated(v, savedInstanceState);
         Bundle arguments = getArguments();
         User user = (User) arguments.get("user");
-        confirmbtn = v.findViewById(R.id.buttonconfirm6);
-        cancelbtn = v.findViewById(R.id.buttoncancel6);
-        EditText food_text = v.findViewById(R.id.foodedit);
+        confirmbtn = v.findViewById(R.id.buttonconfirm9);
+        cancelbtn = v.findViewById(R.id.buttoncancel9);
+        EditText other_text = v.findViewById(R.id.otheredit);
 
         confirmbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 CalculatorListener activity = (CalculatorListener) getActivity();
-                String food_string = String.valueOf(food_text.getText());
+                String other_string = String.valueOf(other_text.getText());
                 try {
-                    if (Integer.parseInt(food_string) > 100000) {
+                    if (Integer.parseInt(other_string) > 100000) {
                         Toast toast = Toast.makeText(getActivity(), "Вы ввели слишком большое число", Toast.LENGTH_SHORT);
                         toast.show();
                     }
                     else {
                         if (user.getTogether() == null) {
-                            String update_together = "INSERT INTO Calculator (Together) VALUES ('" + food_string + "')";
+                            String update_together = "INSERT INTO Calculator (Together) VALUES ('" + other_string + "')";
                             user.db.execSQL(update_together);
 
-                            String update_food = "UPDATE Calculator SET Food = '" + food_string + "' WHERE _id = '" + user.UserID + "'";
-                            user.db.execSQL(update_food);
+                            String update_other = "UPDATE Calculator SET Other = '" + other_string + "' WHERE _id = '" + user.UserID + "'";
+                            user.db.execSQL(update_other);
 
                         }
                         else {
-                            if (user.getFood() == null) {
-                                String update_food = "UPDATE Calculator SET Food =  '" + food_string + "' WHERE _id = '" + user.UserID + "'";
-                                user.db.execSQL(update_food);
+                            if (user.getOther() == null) {
+                                String update_other = "UPDATE Calculator SET Other =  '" + other_string + "' WHERE _id = '" + user.UserID + "'";
+                                user.db.execSQL(update_other);
                             } else {
-                                String update_food = "UPDATE Calculator SET Food = Food + '" + food_string + "' WHERE _id = '" + user.UserID + "'";
-                                user.db.execSQL(update_food);
+                                String update_other = "UPDATE Calculator SET Other = Other + '" + other_string + "' WHERE _id = '" + user.UserID + "'";
+                                user.db.execSQL(update_other);
                             }
-                            String update_together = "UPDATE Calculator SET Together = Together + '" + food_string + "' WHERE _id = '" + user.UserID + "'";
+                            String update_together = "UPDATE Calculator SET Together = Together + '" + other_string + "' WHERE _id = '" + user.UserID + "'";
                             user.db.execSQL(update_together);
                         }
-                        String select_food = "SELECT Food FROM Calculator WHERE _id = '" + user.UserID + "'";
-                        Cursor c3 = user.db.rawQuery(select_food, null);
+                        String select_other = "SELECT Other FROM Calculator WHERE _id = '" + user.UserID + "'";
+                        Cursor c3 = user.db.rawQuery(select_other, null);
                         while (c3.moveToNext()) {
-                            user.Food = Integer.parseInt(String.valueOf(c3.getInt(c3.getColumnIndexOrThrow("Food"))));
+                            user.Other = Integer.parseInt(String.valueOf(c3.getInt(c3.getColumnIndexOrThrow("Other"))));
                         }
-                        System.out.println(user.Food + "это еда");
 
                         String select_together = "SELECT Together FROM Calculator WHERE _id = '" + user.UserID + "'";
                         Cursor c2 = user.db.rawQuery(select_together, null);
                         while (c2.moveToNext()) {
                             user.Together = Integer.parseInt(String.valueOf(c2.getInt(c2.getColumnIndexOrThrow("Together"))));
                         }
-                        activity.onReturnFood(user.Food);
+                        activity.onReturnOther(user.Other);
                         activity.onReturnTogether(user.Together);
                         dismiss();
                     }

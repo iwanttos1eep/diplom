@@ -16,13 +16,11 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import java.io.Serializable;
 
-public class FoodDialog extends BottomSheetDialogFragment {
-
+public class ClothesDialog extends BottomSheetDialogFragment {
     Button confirmbtn, cancelbtn;
 
-
-    public static FoodDialog newInstance(Serializable user) {
-        FoodDialog fragment = new FoodDialog();
+    public static ClothesDialog newInstance(Serializable user) {
+        ClothesDialog fragment = new ClothesDialog();
         Bundle args = new Bundle();
         args.putSerializable("user", user);
         fragment.setArguments(args);
@@ -31,60 +29,60 @@ public class FoodDialog extends BottomSheetDialogFragment {
 
     @Nullable
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.food_dialog, container, false);
+        View v = inflater.inflate(R.layout.clothes_dialog, container, false);
         return v;
     }
+
     public void onViewCreated(View v, Bundle savedInstanceState) {
         super.onViewCreated(v, savedInstanceState);
         Bundle arguments = getArguments();
         User user = (User) arguments.get("user");
-        confirmbtn = v.findViewById(R.id.buttonconfirm6);
-        cancelbtn = v.findViewById(R.id.buttoncancel6);
-        EditText food_text = v.findViewById(R.id.foodedit);
+        confirmbtn = v.findViewById(R.id.buttonconfirm8);
+        cancelbtn = v.findViewById(R.id.buttoncancel8);
+        EditText clothes_text = v.findViewById(R.id.clothesedit);
 
         confirmbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 CalculatorListener activity = (CalculatorListener) getActivity();
-                String food_string = String.valueOf(food_text.getText());
+                String clothes_string = String.valueOf(clothes_text.getText());
                 try {
-                    if (Integer.parseInt(food_string) > 100000) {
+                    if (Integer.parseInt(clothes_string) > 100000) {
                         Toast toast = Toast.makeText(getActivity(), "Вы ввели слишком большое число", Toast.LENGTH_SHORT);
                         toast.show();
                     }
                     else {
                         if (user.getTogether() == null) {
-                            String update_together = "INSERT INTO Calculator (Together) VALUES ('" + food_string + "')";
+                            String update_together = "INSERT INTO Calculator (Together) VALUES ('" + clothes_string + "')";
                             user.db.execSQL(update_together);
 
-                            String update_food = "UPDATE Calculator SET Food = '" + food_string + "' WHERE _id = '" + user.UserID + "'";
-                            user.db.execSQL(update_food);
+                            String update_clothes = "UPDATE Calculator SET Clothes = '" + clothes_string + "' WHERE _id = '" + user.UserID + "'";
+                            user.db.execSQL(update_clothes);
 
                         }
                         else {
-                            if (user.getFood() == null) {
-                                String update_food = "UPDATE Calculator SET Food =  '" + food_string + "' WHERE _id = '" + user.UserID + "'";
-                                user.db.execSQL(update_food);
+                            if (user.getClothes() == null) {
+                                String update_clothes = "UPDATE Calculator SET Clothes =  '" + clothes_string + "' WHERE _id = '" + user.UserID + "'";
+                                user.db.execSQL(update_clothes);
                             } else {
-                                String update_food = "UPDATE Calculator SET Food = Food + '" + food_string + "' WHERE _id = '" + user.UserID + "'";
-                                user.db.execSQL(update_food);
+                                String update_clothes = "UPDATE Calculator SET Clothes = Clothes + '" + clothes_string + "' WHERE _id = '" + user.UserID + "'";
+                                user.db.execSQL(update_clothes);
                             }
-                            String update_together = "UPDATE Calculator SET Together = Together + '" + food_string + "' WHERE _id = '" + user.UserID + "'";
+                            String update_together = "UPDATE Calculator SET Together = Together + '" + clothes_string + "' WHERE _id = '" + user.UserID + "'";
                             user.db.execSQL(update_together);
                         }
-                        String select_food = "SELECT Food FROM Calculator WHERE _id = '" + user.UserID + "'";
-                        Cursor c3 = user.db.rawQuery(select_food, null);
+                        String select_clothes = "SELECT Clothes FROM Calculator WHERE _id = '" + user.UserID + "'";
+                        Cursor c3 = user.db.rawQuery(select_clothes, null);
                         while (c3.moveToNext()) {
-                            user.Food = Integer.parseInt(String.valueOf(c3.getInt(c3.getColumnIndexOrThrow("Food"))));
+                            user.Clothes = Integer.parseInt(String.valueOf(c3.getInt(c3.getColumnIndexOrThrow("Clothes"))));
                         }
-                        System.out.println(user.Food + "это еда");
 
                         String select_together = "SELECT Together FROM Calculator WHERE _id = '" + user.UserID + "'";
                         Cursor c2 = user.db.rawQuery(select_together, null);
                         while (c2.moveToNext()) {
                             user.Together = Integer.parseInt(String.valueOf(c2.getInt(c2.getColumnIndexOrThrow("Together"))));
                         }
-                        activity.onReturnFood(user.Food);
+                        activity.onReturnClothes(user.Clothes);
                         activity.onReturnTogether(user.Together);
                         dismiss();
                     }

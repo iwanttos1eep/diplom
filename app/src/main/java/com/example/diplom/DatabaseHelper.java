@@ -14,7 +14,7 @@ import java.io.OutputStream;
 
 class DatabaseHelper extends SQLiteOpenHelper {
     private static String DB_PATH; // полный путь к базе данных
-    private static String DB_NAME = "DataBataChiabattaFuckUrMamma.db";
+    private static String DB_NAME = "DataBataChiabattaFuckUrMammaAndUrPappa.db";
     private static final int DB_VERSION = 3; // версия базы данных
     static final String TABLE = "USERS"; // название таблицы в бд
     // названия столбцов

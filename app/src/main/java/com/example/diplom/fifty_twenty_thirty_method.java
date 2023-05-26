@@ -18,7 +18,6 @@ public class fifty_twenty_thirty_method extends AppCompatActivity implements MyD
     DatabaseHelper sqlHelper;
     SQLiteDatabase db;
     User user;
-    String UserID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,7 +101,7 @@ public class fifty_twenty_thirty_method extends AppCompatActivity implements MyD
         user.setTransport();
         user.setFood();
         user.setEntertainment();
-        user.setMobile();
+        user.setOther();
         user.setClothes();
         user.setTogether();
         return user;
